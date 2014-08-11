@@ -1,0 +1,21 @@
+body{
+
+}
+
+.panel{
+	margin-left: 100px;
+	width: 60%;
+
+}
+
+.form-control{
+	width: 40%;
+}
+
+.tab-content{
+margin-left: 20px;
+}
+
+.option-menu{
+	margin-left: 10px;
+}

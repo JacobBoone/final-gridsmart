@@ -1,0 +1,99 @@
+extends layout
+
+block content
+	h1 Gridsmart
+	div.panel
+		ul.nav.nav-tabs(role="tablist")
+			li.active
+				a(href="#property" class="active" role="tab" data-toggle="tab") Property
+			li
+				a(href="#bills" role="tab" data-toggle="tab") Bills
+			//- electric water and fuel
+			li
+				a(href="#footprint" role="tab" data-toggle="tab") Carbon Footprint
+		div.tab-content
+			div#property.tab-pane.active
+				h4 Property Details
+				form#property-form.form-horizontal(action="/propertySubmission" method="post")
+					.form-group
+						label Location:
+						//- When the zipcode is selected fills in other hidden places with the zip, city, state
+						//- the plugin is not saving the abbrevation of the states only the full name - zipLookup
+						p.zip-info
+						input.form-control.location-entry.input-sm(name="zipcode" type="text" placeholder="Zipcode" rows=1)
+						//- p(name="state_short").state-name 
+					.form-group
+						//- make this a dropdown---------------------------!!!!!!!!!!!!!!
+						label Building Type:   
+						select.option-menu
+							option(value="residential") Home (Residence)
+							option(value="commercial") Business (Commercial)	
+						//- input.form-control.building-entry(name="building" type="text" placeholder="Type" rows=1) 
+						//- make this a dropdown---------------------------!!!!!!!!!!!!!!
+					.form-group
+						label Year Built:
+						select.option-menu
+							option(value="residential") 2014
+							option(value="commercial") 2013
+							option(value="commercial") 2012
+							option(value="commercial") 2011
+							option(value="commercial") 2010
+							option(value="commercial") 2009
+							option(value="commercial") 2008
+							option(value="commercial") 2007
+							option(value="commercial") 2006
+							option(value="commercial") 2005
+							option(value="commercial") 2004
+							option(value="commercial") 2003
+							option(value="commercial") 2002
+							option(value="commercial") 2001
+							option(value="commercial") 2000
+							option(value="commercial") 1999
+							option(value="commercial") 1998
+							option(value="commercial") 1997
+							option(value="commercial") 1996
+							option(value="commercial") 1995
+							option(value="commercial") 1994
+							option(value="commercial") 1993
+							option(value="commercial") 1992
+							option(value="commercial") 1991
+							option(value="commercial") 1990
+							option(value="commercial") 1989
+							option(value="commercial") 1988
+							option(value="commercial") 1987
+							option(value="commercial") 1986
+							option(value="commercial") 1985
+							option(value="commercial") 1984
+							option(value="commercial") 1983
+							option(value="commercial") 1982
+							option(value="commercial") 1981
+							option(value="commercial") 1980
+							option(value="commercial") 1979
+							option(value="commercial") 1978
+							option(value="commercial") 1977
+							option(value="commercial") 1976
+							option(value="commercial") 1975
+							option(value="commercial") 1974
+							option(value="commercial") 1973
+							option(value="commercial") 1972
+							option(value="commercial") 1971
+							option(value="commercial") 1970
+							option(value="commercial") 1969
+							option(value="commercial") 1968
+							option(value="commercial") 1967
+							option(value="commercial") 1966
+							option(value="commercial") 1965
+							option(value="commercial") 1964
+							option(value="commercial") 1963
+							option(value="commercial") 1962
+							option(value="commercial") 1961
+							option(value="commercial") 1960
+
+					.form-group
+						label Square ft:
+						input.form-control.area-entry.input-sm(name="year" type="text" placeholder="Sq. Ft." rows=25) 
+
+					.form-group
+						button.btn.btn-success.submit-button(type="submit") Save Location
+			div#bills.tab-pane bills
+			div#footprint.tab-pane footprint
