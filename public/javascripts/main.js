@@ -1,4 +1,4 @@
-$(document).ready(function() {                                  // When the document loads,
+$(document).ready(function() {                                  // from zipLookup (https://code.google.com/p/ziplookup/) When the document loads,
     $('.location-entry[name=zipcode]').blur(function(){                        // Set on blur
         $.zipLookup(                                            // Do a Zip code Lookup
             $(this).val(),                                      // Zip code Field Value
