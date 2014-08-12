@@ -4,95 +4,15 @@ block content
 	h1 Gridsmart
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
-			li.active
-				a(href="#property") Property
 			li
-				a(href="/bills") Bills
+				a(href="/") Property
+			li.active
+				a(href="/bills" class="active") Bills
 			//- electric water and fuel
 			li
 				a(href="/footprint") Carbon Footprint/ Usage
 		div.tab-content
-			div#property.tab-pane.active
-				h3 Property Details
-				form#property-form.form-horizontal(action="/propertySubmission" method="post")
-					.form-group
-						label.control-label(for="location-entry") Location:
-						//- When the zipcode is selected fills in other hidden places with the zip, city, state
-						//- the plugin needs to process all three pieces of info city, state, state Abbr. i am only posting the 1st and 3rd- zipLookup
-						p.zip-info
-						input.form-control.location-entry.input-sm(name="zipcode" type="text" placeholder="Zipcode" required)
-					.form-group
-						label Building Type:   
-						select.option-menu.building-entry(name="buildingtype")
-							option(value="residential") Home (Residence)
-							option(value="commercial") Business (Commercial)	
-					.form-group
-						label Year Built:
-						select.option-menu.year-entry(name="yearbuilt")
-							option(value="2014") 2014
-							option(value="2013") 2013
-							option(value="2012") 2012
-							option(value="2011") 2011
-							option(value="2010") 2010
-							option(value="2009") 2009
-							option(value="2008") 2008
-							option(value="2007") 2007
-							option(value="2006") 2006
-							option(value="2005") 2005
-							option(value="2004") 2004
-							option(value="2003") 2003
-							option(value="2002") 2002
-							option(value="2001") 2001
-							option(value="2000") 2000
-							option(value="1999") 1999
-							option(value="1998") 1998
-							option(value="1997") 1997
-							option(value="1996") 1996
-							option(value="1995") 1995
-							option(value="1994") 1994
-							option(value="1993") 1993
-							option(value="1992") 1992
-							option(value="1991") 1991
-							option(value="1990") 1990
-							option(value="1989") 1989
-							option(value="1988") 1988
-							option(value="1987") 1987
-							option(value="1986") 1986
-							option(value="1985") 1985
-							option(value="1984") 1984
-							option(value="1983") 1983
-							option(value="1982") 1982
-							option(value="1981") 1981
-							option(value="1980") 1980
-							option(value="1979") 1979
-							option(value="1978") 1978
-							option(value="1977") 1977
-							option(value="1976") 1976
-							option(value="1975") 1975
-							option(value="1974") 1974
-							option(value="1973") 1973
-							option(value="1972") 1972
-							option(value="1971") 1971
-							option(value="1970") 1970
-							option(value="1969") 1969
-							option(value="1968") 1968
-							option(value="1967") 1967
-							option(value="1966") 1966
-							option(value="1965") 1965
-							option(value="1964") 1964
-							option(value="1963") 1963
-							option(value="1962") 1962
-							option(value="1961") 1961
-							option(value="1960") 1960
-
-					.form-group
-						label Square ft:
-						input.form-control.area-entry.input-sm(name="sqft" type="number" placeholder="Sq. Ft." required) 
-
-					.form-group
-						button.btn.btn-success.submit-button(type="submit") Save Location
-						p.checkmark
-			//- div#bills.tab-pane
+			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li.active
 						a(href="#electric" class="active" role="tab" data-toggle="tab") Electric
@@ -215,58 +135,6 @@ block content
 										td {{end}}
 										td {{usage}}
 										td {{cost}}
-					//- div#fuel.tab-pane
-						h3.panel-heading Fuel Bills
-						table.table
-							thead
-								tr
-									th
-										button.btn.btn-info.btn-xs Add Bill +
-									th Billing Period Start
-									th Billing Period End
-									th Usage (CCF)
-									th Total Cost
-							tbody
-								tr
-									td
-										//- append these buttons dynamically when new bill added
-										button.btn.btn-warning.btn-xs(id="fuDelete") Delete
-										button.btn.btn-info.btn-xs(id="fuEdit") Edit
-									td#fuBillStart
-									td#fuBillEnd
-									td#fuBillUsage
-									td#fuBillCost
-			//- div#footprint.tab-pane footprint/ usage - this is where charts go
-
-
-			//- #pageFooterStayConnected.pageFooterCol
-				h6 Stay Connected
-				ul.socialTools
-					li.socialToolsTwitter
-						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://twitter.com/mybge', target='_new', title='Twitter') Twitter
-					li.socialToolsFacebook
-						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.facebook.com/myBGE', target='_new', title='Facebook') Facebook
-					li.socialToolsYouTube
-						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.youtube.com/BALTIMOREGASELECTRIC', target='_new', title='YouTube') YouTube
-					li.socialToolsLinkedIn
-						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.linkedin.com/company/5115?trk=null', target='_new', title='LinkedIn') LinkedIn
-					li.socialToolsFlickr
-						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.flickr.com/photos/mybge', target='_new', title='Flickr') Flickr
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

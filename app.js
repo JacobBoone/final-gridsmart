@@ -12,13 +12,16 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.get('/', indexController.index);
+app.get('/bills', indexController.bills)
+app.get('/footprint', indexController.footprint)
+
+
 
 
 // // // Submit entry is the submitted form when accessed as a POST
 app.post('/propertySubmission', indexController.submission);
-// app.post('/elecBillSubmission', indexController.submission);
 
-// app.get('/', indexController.index);
+app.post('/elecBillSubmission', indexController.elecBill);
 
 
 
