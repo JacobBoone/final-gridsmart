@@ -30,3 +30,8 @@ body{
 :required{
 	color: red;
 }*/
+
+.lightbox{
+	width: 50%;
+	height: 50%;
+}

@@ -1,4 +1,4 @@
-var elecLightbox = $('<div>Content</div>')
+// var elecLightbox = $('<div class="lightbox">Content</div>')
 
 $(document).ready(function() {                                  // from zipLookup (https://code.google.com/p/ziplookup/) When the document loads,
     $('.location-entry[name=zipcode]').blur(function(){                        // Set on blur
@@ -45,7 +45,9 @@ $(document).ready(function() {                                  // from zipLooku
     });
 // declare some variables to construct the light box on click
 
-    $('.elecAddBill').click(function(){
+    // $('.elecAddBill').click(function(){
+    //     $('.elecNewLightbox').append(elecLightbox)
+    //     console.log('lightbox')
         // $('.elecLightbox').animate({'opacity':'.50'}, 300, 'linear');
                     // $('.box').animate({'opacity':'1.00'}, 300, 'linear');
                     // $('.backdrop, .box').css('display', 'block');
