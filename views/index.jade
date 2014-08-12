@@ -16,20 +16,16 @@ block content
 				h3 Property Details
 				form#property-form.form-horizontal(action="/propertySubmission" method="post")
 					.form-group
-						label Location:
+						label.control-label(for="location-entry") Location:
 						//- When the zipcode is selected fills in other hidden places with the zip, city, state
-						//- the plugin is not saving the abbrevation of the states only the full name - zipLookup
+						//- the plugin needs to process all three pieces of info city, state, state Abbr. i am only posting the 1st and 3rd- zipLookup
 						p.zip-info
 						input.form-control.location-entry.input-sm(name="zipcode" type="text" placeholder="Zipcode" required)
-						//- p(name="state_short").state-name 
 					.form-group
-						//- make this a dropdown---------------------------!!!!!!!!!!!!!!
 						label Building Type:   
 						select.option-menu.building-entry(name="buildingtype")
 							option(value="residential") Home (Residence)
 							option(value="commercial") Business (Commercial)	
-						//- input.form-control.building-entry(name="building" type="text" placeholder="Type" rows=1) 
-						//- make this a dropdown---------------------------!!!!!!!!!!!!!!
 					.form-group
 						label Year Built:
 						select.option-menu.year-entry(name="yearbuilt")
@@ -91,7 +87,7 @@ block content
 
 					.form-group
 						label Square ft:
-						input.form-control.area-entry.input-sm(name="sqft" type="text" placeholder="Sq. Ft." required) 
+						input.form-control.area-entry.input-sm(name="sqft" type="number" placeholder="Sq. Ft." required) 
 
 					.form-group
 						button.btn.btn-success.submit-button(type="submit") Save Location
@@ -102,7 +98,7 @@ block content
 						a(href="#electric" class="active" role="tab" data-toggle="tab") Electric
 					li
 						a(href="#water" role="tab" data-toggle="tab") Water
-					li
+					//- li
 						a(href="#fuel" role="tab" data-toggle="tab") Fuel
 				div.tab-content
 					div#electric.tab-pane.active
@@ -111,46 +107,101 @@ block content
 							thead
 								tr
 									th
-										button.btn.btn-info.btn-xs.elecAddBill Add Bill +
+										button.btn.btn-info.btn-xs(id="elecAddBill" data-toggle="modal" data-target="#elecModal") Add Bill +
+										#elecModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+											.modal-dialog
+												.modal-content
+													.modal-header
+														button.close(type='button', data-dismiss='modal')
+															span(aria-hidden='true') ×
+															span.sr-only Close
+														h3#myElecBillLabel.modal-title New Electric Bill
+														.modal-body
+														form#elecbill-form.form-horizontal(action="/elecBillSubmission" method="post")
+															.form-group
+																label Bill Start Date:
+																input.form-control.elStart-entry.input-sm.bill-form(name="elStart" type="date" required)
+															.form-group
+																label Bill End Date:
+																input.form-control.elEnd-entry.input-sm.bill-form(name="elEnd" type="date" required)
+															.form-group
+																label Usage (kWh):
+																input.form-control.elUsage-entry.input-sm.bill-form(name="elUsage" type="number" required)
+															.form-group
+																label Total Cost:
+																input.form-control.elCost-entry.input-sm.bill-form(name="elCost" type="text" required)
+														.modal-footer
+															button.btn.btn-default(type='button', data-dismiss='modal') Close
+															button.btn.btn-primary.save-elecBill(type='button') Save changes
 									th Billing Period Start
 									th Billing Period End
 									th Usage (kWh)
-									//- th Demand (kW)
 									th Total Cost
-							tbody
-								tr
-									td
-										//- append these buttons dynamically when new bill added
-										button.btn.btn-warning.btn-xs(id="elDelete") Delete
-										button.btn.btn-info.btn-xs(id="elEdit") Edit
-									td#elBillStart
-									td#elBillEnd
-									td#elBillUsage
-									//- td#elBillDemand
-									td#elBillCost										
-					//- div.elecNewLightbox.hide.fade(id="lightbox" tabindex="-1" aria-hidden="true")
+							//- HB Placeholder
+							tbody#elec-table
+									//- HB template
+								script#elec-template(type="text/x-handlebars-template")
+									tr.elec-row
+										td
+											//- append these buttons dynamically when new bill added
+											button.btn.btn-warning.btn-xs(id="elDelete") Delete
+											button.btn.btn-info.btn-xs(id="elEdit") Edit
+										td{{start}}
+										td{{end}}
+										td{{usage}}
+										td{{cost}}
+
+
 					div#water.tab-pane
 						h3.panel-heading Water Bills
 						table.table
 							thead
 								tr
 									th
-										button.btn.btn-info.btn-xs Add Bill +
+										button.btn.btn-info.btn-xs(id="waterAddBill" data-toggle="modal" data-target="#waterModal") Add Bill +
+										#waterModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+											.modal-dialog
+												.modal-content
+													.modal-header
+														button.close(type='button', data-dismiss='modal')
+															span(aria-hidden='true') ×
+															span.sr-only Close
+														h3#myWaterBillLabel.modal-title New Water Bill
+														.modal-body
+														form#waterbill-form.form-horizontal(action="/waterBillSubmission" method="post")
+															.form-group
+																label Bill Start Date:
+																input.form-control.waStart-entry.input-sm.bill-form(name="waStart" type="date" required)
+															.form-group
+																label Bill End Date:
+																input.form-control.waEnd-entry.input-sm.bill-form(name="waEnd" type="date" required)
+															.form-group
+																label Usage (gallons):
+																input.form-control.waUsage-entry.input-sm.bill-form(name="waUsage" type="number" required)
+															.form-group
+																label Total Cost:
+																input.form-control.waCost-entry.input-sm.bill-form(name="waCost" type="text" required)
+														.modal-footer
+															button.btn.btn-default(type='button', data-dismiss='modal') Close
+															button.btn.btn-primary.save-waterBill(type='button') Save changes
 									th Billing Period Start
 									th Billing Period End
 									th Usage (Gallons)
 									th Total Cost
-							tbody
-								tr
-									td
-										//- append these buttons dynamically when new bill added
-										button.btn.btn-warning.btn-xs(id="waDelete") Delete 
-										button.btn.btn-info.btn-xs(id="waEdit") Edit
-									td#waBillStart
-									td#waBillEnd
-									td#waBillUsage
-									td#waBillCost
-					div#fuel.tab-pane
+							//- HB Placeholder
+							tbody#water-table
+									//- HB template
+								script#water-template(type="text/x-handlebars-template")
+									tr
+										td
+											//- append these buttons dynamically when new bill added
+											button.btn.btn-warning.btn-xs(id="waDelete") Delete
+											button.btn.btn-info.btn-xs(id="waEdit") Edit
+										td{{start}}
+										td{{end}}
+										td{{usage}}
+										td{{cost}}
+					//- div#fuel.tab-pane
 						h3.panel-heading Fuel Bills
 						table.table
 							thead

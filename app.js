@@ -16,6 +16,7 @@ app.get('/', indexController.index);
 
 // // // Submit entry is the submitted form when accessed as a POST
 app.post('/propertySubmission', indexController.submission);
+// app.post('/elecBillSubmission', indexController.submission);
 
 // app.get('/', indexController.index);
 

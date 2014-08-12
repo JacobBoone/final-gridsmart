@@ -35,3 +35,13 @@ body{
 	width: 50%;
 	height: 50%;
 }
+
+
+#elecbill-form, #waterbill-form{
+	padding-left: 70px;
+}
+
+.modal-dialog{
+	width: 425px;
+
+}

@@ -43,11 +43,26 @@ var indexController = {
 		}
 	})
 	// i want to this keep the user on the propery form page after it collects the data
-	
-
 
 
 	},
+
+	// 	elecBillSubmission: function(req, res) {
+		
+	// 	var newElecBill = new Newelecbill({
+	// 				elStart: req.body.elStart,
+	// 				elEnd: req.body.elEnd,
+	// 				elUsage: req.body.elUsage,
+	// 				elCost: req.body.elCost,
+	// 	})
+
+	// 	newProperty
+	// },
+
+
+
+
+
 };
 
 

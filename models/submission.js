@@ -1,5 +1,13 @@
 var mongoose =require('mongoose');
 
+var Newelecbill = mongoose.model('Newelecbill',{
+	elStart: String,
+	elEnd: String,
+	elUsage: String,
+	elCost: String
+})
+
+
 var Newproperty = mongoose.model('Newproperty',{
 	name: String,
 	houses:[{
@@ -8,12 +16,7 @@ var Newproperty = mongoose.model('Newproperty',{
 		yearBuilt: String,
 		sqft: String,
 		bills:{
-			electric:[{
-				elStart: String,
-				elEnd: String,
-				elUsage: String,
-				elCost: String
-			}],
+			electric:[Newelecbill],
 			water:[{
 				waStart: String,
 				waEnd: String,
@@ -25,6 +28,9 @@ var Newproperty = mongoose.model('Newproperty',{
 
 
 })
+
+
+
 
 
 
