@@ -19,20 +19,20 @@ block content
 						label Location:
 						//- When the zipcode is selected fills in other hidden places with the zip, city, state
 						//- the plugin is not saving the abbrevation of the states only the full name - zipLookup
-						p.zip-info(name="city")
-						input.form-control.location-entry.input-sm(name="zipcode" type="text" placeholder="Zipcode" rows=1)
+						p.zip-info
+						input.form-control.location-entry.input-sm(name="zipcode" type="text" placeholder="Zipcode" required)
 						//- p(name="state_short").state-name 
 					.form-group
 						//- make this a dropdown---------------------------!!!!!!!!!!!!!!
 						label Building Type:   
-						select.option-menu(name="buildingtype")
+						select.option-menu.building-entry(name="buildingtype")
 							option(value="residential") Home (Residence)
 							option(value="commercial") Business (Commercial)	
 						//- input.form-control.building-entry(name="building" type="text" placeholder="Type" rows=1) 
 						//- make this a dropdown---------------------------!!!!!!!!!!!!!!
 					.form-group
 						label Year Built:
-						select.option-menu(name="yearbuilt")
+						select.option-menu.year-entry(name="yearbuilt")
 							option(value="2014") 2014
 							option(value="2013") 2013
 							option(value="2012") 2012
@@ -91,10 +91,11 @@ block content
 
 					.form-group
 						label Square ft:
-						input.form-control.area-entry.input-sm(name="sqft" type="text" placeholder="Sq. Ft." rows=25) 
+						input.form-control.area-entry.input-sm(name="sqft" type="text" placeholder="Sq. Ft." required) 
 
 					.form-group
 						button.btn.btn-success.submit-button(type="submit") Save Location
+						p.checkmark
 			div#bills.tab-pane
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li.active
@@ -110,7 +111,7 @@ block content
 							thead
 								tr
 									th
-										button.btn.btn-info.btn-xs Add Bill +
+										button.btn.btn-info.btn-xs.elecAddBill Add Bill +
 									th Billing Period Start
 									th Billing Period End
 									th Usage (kWh)
@@ -170,8 +171,23 @@ block content
 									td#fuBillStart
 									td#fuBillEnd
 									td#fuBillUsage
-									td#fuBillCost				
+									td#fuBillCost
 			div#footprint.tab-pane footprint/ usage - this is where charts go
+
+
+			//- #pageFooterStayConnected.pageFooterCol
+				h6 Stay Connected
+				ul.socialTools
+					li.socialToolsTwitter
+						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://twitter.com/mybge', target='_new', title='Twitter') Twitter
+					li.socialToolsFacebook
+						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.facebook.com/myBGE', target='_new', title='Facebook') Facebook
+					li.socialToolsYouTube
+						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.youtube.com/BALTIMOREGASELECTRIC', target='_new', title='YouTube') YouTube
+					li.socialToolsLinkedIn
+						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.linkedin.com/company/5115?trk=null', target='_new', title='LinkedIn') LinkedIn
+					li.socialToolsFlickr
+						a(style='background-image: url("https://www.bge.com/Style%20Library/BGE/Images/icon_social_tools.png");', href='http://www.flickr.com/photos/mybge', target='_new', title='Flickr') Flickr
 
 
 

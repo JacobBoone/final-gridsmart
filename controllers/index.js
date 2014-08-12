@@ -9,17 +9,42 @@ var indexController = {
 		// console.log('from index.js', req.body);
 
 		var newProperty = new Newproperty({
-		zipcode: req.body.zipcode,
-		city: req.body.city, //not working
-		buildingtype: req.body.buildingtype,
-		yearbuilt: req.body.yearbuilt,
-		sqft: req.body.sqft
+		name: req.body.name,
+		houses:[{
+			zipcode: req.body.zipcode,
+			buildingType: req.body.buildingtype,
+			yearBuilt: req.body.yearbuilt,
+			sqft: req.body.sqft,
+			bills:{
+				electric:[{
+					elStart: req.body.elStart,
+					elEnd: req.body.elEnd,
+					elUsage: req.body.elUsage,
+					elCost: req.body.elCost,
+				}],
+				water:[{
+					waStart: req.body.waStart,
+					waEnd: req.body.waEnd,
+					waUsage: req.body.waUsage,
+					waCost: req.body.waCost,
+				}],
+
+			}
+		}],
 
 	});
 		//  mongoose knows where to save it too on the app.js page
-	newProperty.save()
+	newProperty.save(function(err,doc){
+		if(err){
+			console.log("ERROR!", err)
+		}
+		else{
+			res.redirect('/')
+		}
+	})
+	// i want to this keep the user on the propery form page after it collects the data
+	
 
-		// res.redirect('/mainpage')
 
 
 	},

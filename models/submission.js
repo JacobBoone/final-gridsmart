@@ -1,11 +1,28 @@
 var mongoose =require('mongoose');
 
 var Newproperty = mongoose.model('Newproperty',{
-	zipcode: String,
-	city: String,
-	buildingtype: String,
-	yearbuilt: String,
-	sqft: String
+	name: String,
+	houses:[{
+		zipcode: String,
+		buildingType: String,
+		yearBuilt: String,
+		sqft: String,
+		bills:{
+			electric:[{
+				elStart: String,
+				elEnd: String,
+				elUsage: String,
+				elCost: String
+			}],
+			water:[{
+				waStart: String,
+				waEnd: String,
+				waUsage: String,
+				waCost: String
+			}],
+		}
+	}]
+
 
 })
 

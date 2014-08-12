@@ -13,9 +13,20 @@ body{
 }
 
 .tab-content{
-margin-left: 20px;
+	margin-left: 20px;
 }
 
 .option-menu{
 	margin-left: 10px;
 }
+
+/*.checkmark{
+	display: inline-block;
+	padding-left: 20px;
+	color: #00FF00;
+	font-size: 25px
+}
+
+:required{
+	color: red;
+}*/
