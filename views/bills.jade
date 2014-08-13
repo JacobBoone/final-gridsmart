@@ -5,19 +5,19 @@ block content
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li
-				a(href="/") Property
+				a(href="/users/#{userId}") Property
 			li.active
-				a(href="/bills" class="active") Bills
+				a(href="/users/#{userId}/bills" class="active") Bills
 			//- electric water and fuel
 			li
-				a(href="/footprint") Carbon Footprint/ Usage
+				a(href="/users/#{userId}/footprint") Carbon Footprint/ Usage
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li.active
-						a(href="/bills" class="active") Electric
+						a(href="/users/#{userId}/bills" class="active") Electric
 					li
-						a(href="/waterbill") Water
+						a(href="/users/#{userId}/waterbill") Water
 					//- li
 						a(href="#fuel" role="tab" data-toggle="tab") Fuel
 				div.tab-content
@@ -37,7 +37,7 @@ block content
 															span.sr-only Close
 														h3#myElecBillLabel.modal-title New Electric Bill
 														.modal-body
-															form#elecbill-form.form-horizontal(action="/elecBillSubmission", method="post", role="form")
+															form#elecbill-form.form-horizontal(action="/users/#{userId}/elecBillSubmission", method="post", role="form")
 																.form-group
 																	label Bill Start Date:
 																	input.form-control.elStart-entry.input-sm.bill-form(name="elStart" type="date" required)
@@ -63,88 +63,12 @@ block content
 									tr.elec-row
 										td
 											//- append these buttons dynamically when new bill added
-											a.btn.btn-warning.btn-xs(id="elDelete" href="/bills/remove/#{bill._id}") Delete
-											a.btn.btn-info.btn-xs(id="elEdit") Edit
+											a.btn.btn-warning.btn-xs(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}") Delete
+											//- a.btn.btn-info.btn-xs(id="elEdit") Edit
 										td=bill.elStart
 										td=bill.elEnd
 										td=bill.elUsage
 										td=bill.elCost
-									//- HB template
-								//- script#elec-template(type="text/x-handlebars-template")
-									tr.elec-row
-										td
-											//- append these buttons dynamically when new bill added
-											button.btn.btn-warning.btn-xs(id="elDelete") Delete
-											button.btn.btn-info.btn-xs(id="elEdit") Edit
-										td {{start}}
-										td {{end}}
-										td {{usage}}
-										td {{cost}}
-
-							//- form(action="/postme", method="post", role="form")
-								.form-group
-									input(type="submit")
-
-
-					//- div#water.tab-pane
-						h3.panel-heading Water Bills
-						table.table
-							thead
-								tr
-									th
-										button.btn.btn-info.btn-xs(id="waterAddBill" data-toggle="modal" data-target="#waterModal") Add Bill +
-										#waterModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-											.modal-dialog
-												.modal-content
-													.modal-header
-														button.close(type='button', data-dismiss='modal')
-															span(aria-hidden='true') ×
-															span.sr-only Close
-														h3#myWaterBillLabel.modal-title New Water Bill
-														.modal-body
-															form#waterbill-form.form-horizontal(action="/waterBillSubmission" method="post")
-																.form-group
-																	label Bill Start Date:
-																	input.form-control.waStart-entry.input-sm.bill-form(name="waStart" type="date" required)
-																.form-group
-																	label Bill End Date:
-																	input.form-control.waEnd-entry.input-sm.bill-form(name="waEnd" type="date" required)
-																.form-group
-																	label Usage (gallons):
-																	input.form-control.waUsage-entry.input-sm.bill-form(name="waUsage" type="number" required)
-																.form-group
-																	label Total Cost:
-																	input.form-control.waCost-entry.input-sm.bill-form(name="waCost" type="text" required)
-																.form-group
-																	button.btn.btn-default(type='button', data-dismiss='modal') Close
-																	input.btn.btn-primary.save-waterBill(type='submit' value="Save Changes")
-									th Billing Period Start
-									th Billing Period End
-									th Usage (Gallons)
-									th Total Cost
-							//- HB Placeholder
-							tbody#water-table
-								for bill in user.houses[0].bills.water
-									tr.water-row
-										td
-											//- append these buttons dynamically when new bill added
-											button.btn.btn-warning.btn-xs(id="waDelete") Delete
-											button.btn.btn-info.btn-xs(id="waEdit") Edit
-										td=bill.waStart
-										td=bill.waEnd
-										td=bill.waUsage
-										td=bill.waCost
-									//- HB template
-								//- script#water-template(type="text/x-handlebars-template")
-									tr
-										td
-											//- append these buttons dynamically when new bill added
-											button.btn.btn-warning.btn-xs(id="waDelete") Delete
-											button.btn.btn-info.btn-xs(id="waEdit") Edit
-										td {{start}}
-										td {{end}}
-										td {{usage}}
-										td {{cost}}
 
 
 

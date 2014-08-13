@@ -11,23 +11,22 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
-app.get('/', indexController.index);
-app.get('/bills', indexController.bills);
-app.get('/waterbill', indexController.water);
-
-app.get('/footprint', indexController.footprint);
+app.get('/users/:userId', indexController.index);
+app.get('/users/:userId/bills', indexController.bills);
+app.get('/users/:userId/waterbill', indexController.water);
+app.get('/users/:userId/footprint', indexController.footprint);
 
 // removing bills
-app.get('/bills/remove/:billId', indexController.removeelec);
-app.get('/waterbill/remove/:billId', indexController.removewater);
+app.get('/users/:userId/bills/remove/:billId', indexController.removeelec);
+app.get('/users/:userId/waterbill/remove/:billId', indexController.removewater);
 
 
 // // // Submit entry is the submitted form when accessed as a POST
-app.post('/propertySubmission', indexController.submission);
+app.post('/users/:userId/propertySubmission', indexController.submission);
 
-app.post('/elecBillSubmission', indexController.elecBill);
+app.post('/users/:userId/elecBillSubmission', indexController.elecBill);
 
-app.post('/waterBillSubmission', indexController.waterBill);
+app.post('/users/:userId/waterBillSubmission', indexController.waterBill);
 
 var server = app.listen(5365, function() {
 	console.log('Express server listening on port ' + server.address().port);

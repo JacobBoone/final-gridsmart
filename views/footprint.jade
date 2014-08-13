@@ -5,12 +5,12 @@ block content
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li
-				a(href="/") Property
+				a(href="/users/#{userId}") Property
 			li
-				a(href="/bills") Bills
+				a(href="/users/#{userId}/bills") Bills
 			//- electric water and fuel
 			li.active
-				a(href="/footprint"  class="active") Carbon Footprint/ Usage
+				a(href="/users/#{userId}/footprint"  class="active") Carbon Footprint/ Usage
 		div.tab-content
 			div#footprint.tab-pane.active
 				h3 Some Eco BIZ Yo!

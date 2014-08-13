@@ -1,6 +1,7 @@
 var mongoose =require('mongoose');
 
 var Newproperty = mongoose.model('Newproperty',{
+	userId: Number,
 	name: String,
 	houses:[{
 		zipcode: String,

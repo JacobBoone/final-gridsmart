@@ -3,26 +3,26 @@ var Newproperty = require('../models/submission.js')
 var indexController = {
 	index: function(req, res) {
 		// res.render('index');
-		Newproperty.findOne({},function(err, doc) {
-			res.render('index', {user:doc})
+		Newproperty.findOne({userId:req.params.userId},function(err, doc) {
+			res.render('index', {user: doc, userId:req.params.userId})
 		})
 	},
 
 	bills: function(req, res) {
-		Newproperty.findOne({},function(err, doc) {
-			res.render('bills', {user:doc})
+		Newproperty.findOne({userId:req.params.userId},function(err, doc) {
+			res.render('bills', {user:doc, userId:req.params.userId})
 		})
 	},
 
 	water: function(req, res) {
-		Newproperty.findOne({},function(err, doc) {
-			res.render('waterbill', {user:doc})
+		Newproperty.findOne({userId:req.params.userId},function(err, doc) {
+			res.render('waterbill', {user:doc, userId:req.params.userId})
 		})
 	},
 
 	footprint: function(req, res) {
-		Newproperty.findOne({},function(err, doc) {
-			res.render('footprint', {user:doc})
+		Newproperty.findOne({userId:req.params.userId},function(err, doc) {
+			res.render('footprint', {user:doc, userId:req.params.userId})
 		})
 	},
 
@@ -32,6 +32,7 @@ var indexController = {
 
 		var newProperty = new Newproperty({
 		// name: req.body.name,
+		userId:req.params.userId,
 		houses:[{
 			zipcode: req.body.zipcode,
 			buildingType: req.body.buildingtype,
@@ -46,7 +47,7 @@ var indexController = {
 				console.log("ERROR!", err)
 			}
 			else{
-				res.redirect('/')
+				res.redirect(('/users/'+req.params.userId))
 			}
 		})
 	// i want to this keep the user on the propery form page after it collects the data
@@ -55,7 +56,7 @@ var indexController = {
 	elecBill: function(req, res) {
 		console.log("submited!!1")
 		console.log(req.body)
-		Newproperty.findOne({}, function(err,user){
+		Newproperty.findOne({userId:req.params.userId}, function(err,user){
 			var elecBill = {
 				elStart: req.body.elStart,
 				elEnd: req.body.elEnd,
@@ -71,7 +72,7 @@ var indexController = {
 				console.log("ERROR!", err)
 			}
 			else{
-				res.redirect('/bills')
+				res.redirect(('/users/'+req.params.userId+ '/bills'))
 			}
 		})
 
@@ -82,7 +83,7 @@ var indexController = {
 	waterBill: function(req, res) {
 		console.log("submited!!1")
 		console.log(req.body)
-		Newproperty.findOne({}, function(err,user){
+		Newproperty.findOne({userId:req.params.userId}, function(err,user){
 			var waterBill = {
 				waStart: req.body.waStart,
 				waEnd: req.body.waEnd,
@@ -98,7 +99,7 @@ var indexController = {
 					console.log("ERROR!", err)
 				}
 				else{
-					res.redirect('/waterbill')
+					res.redirect(('/users/'+req.params.userId+ '/waterbill'))
 				}
 			})
 
@@ -110,7 +111,7 @@ var indexController = {
 		// Pull the billId from the url
     	var targetBill = req.params.billId;
     	console.log(targetBill)
-    	Newproperty.findOne({}, function(err,user){
+    	Newproperty.findOne({userId:req.params.userId}, function(err,user){
 			// STEPS
 			// 1.locate matching bill
 			// 2.splice/ remove bill out of the array
@@ -124,7 +125,7 @@ var indexController = {
 					console.log("ERROR!", err)
 				}
 				else{
-					res.redirect('/bills')
+					res.redirect('/users/'+req.params.userId+'/bills')
 				}
 			})
 				// console.log("found it", findBill)
@@ -133,11 +134,18 @@ var indexController = {
 				
 	},
 
+
+
+
+
+
+
+
 	removewater: function(req, res) {
 		// Pull the billId from the url
     	var targetWaterBill = req.params.billId;
     	console.log(targetWaterBill)
-    	Newproperty.findOne({}, function(err,user){
+    	Newproperty.findOne({userId:req.params.userId}, function(err,user){
 			// STEPS
 			// 1.locate matching bill
 			// 2.splice/ remove bill out of the array
@@ -151,7 +159,7 @@ var indexController = {
 						console.log("ERROR!", err)
 					}
 					else{
-						res.redirect('/waterbill')
+						res.redirect('/users/'+req.params.userId+'/waterbill')
 					}
 				})
 				// console.log("found it", findBill)
