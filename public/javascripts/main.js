@@ -20,7 +20,11 @@ $(document).ready(function() {                                  // from zipLooku
     //     console.log("Submit click")
 
     // });
-
+// // delete individual bills
+//     $('#elDelete').click(function(){
+//                 console.log('delete me')
+//                 $(this).closest('.elec-row').remove()
+//         })
 
 
 

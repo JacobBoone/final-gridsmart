@@ -15,9 +15,9 @@ block content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li.active
-						a(href="#electric" class="active" role="tab" data-toggle="tab") Electric
+						a(href="/bills" class="active") Electric
 					li
-						a(href="#water" role="tab" data-toggle="tab") Water
+						a(href="/waterbill") Water
 					//- li
 						a(href="#fuel" role="tab" data-toggle="tab") Fuel
 				div.tab-content
@@ -63,8 +63,8 @@ block content
 									tr.elec-row
 										td
 											//- append these buttons dynamically when new bill added
-											button.btn.btn-warning.btn-xs(id="elDelete") Delete
-											button.btn.btn-info.btn-xs(id="elEdit") Edit
+											a.btn.btn-warning.btn-xs(id="elDelete" href="/bills/remove/#{bill._id}") Delete
+											a.btn.btn-info.btn-xs(id="elEdit") Edit
 										td=bill.elStart
 										td=bill.elEnd
 										td=bill.elUsage
@@ -86,7 +86,7 @@ block content
 									input(type="submit")
 
 
-					div#water.tab-pane
+					//- div#water.tab-pane
 						h3.panel-heading Water Bills
 						table.table
 							thead

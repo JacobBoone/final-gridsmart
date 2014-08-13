@@ -14,11 +14,11 @@ var indexController = {
 		})
 	},
 
-	// water: function(req, res) {
-	// 	Newproperty.findOne({},function(err, doc) {
-	// 		res.render('waterbill', {user:doc})
-	// 	})
-	// },
+	water: function(req, res) {
+		Newproperty.findOne({},function(err, doc) {
+			res.render('waterbill', {user:doc})
+		})
+	},
 
 	footprint: function(req, res) {
 		Newproperty.findOne({},function(err, doc) {
@@ -98,12 +98,39 @@ var indexController = {
 				console.log("ERROR!", err)
 			}
 			else{
-				res.redirect('/bills#water')
+				res.redirect('/waterbill')
 			}
 		})
 
 		})
 		
+	},
+
+	removeelec: function(req, res) {
+		// Pull the billId from the url
+    	var targetBill = req.params.billId;
+    	console.log(targetBill)
+    	Newproperty.findOne({}, function(err,user){
+			// STEPS
+			// 1.locate matching bill
+			// 2.splice/ remove bill out of the array
+			// involves
+			
+			// review - http://mongoosejs.com/docs/subdocs.html
+			var findBill = user.houses[0].bills.electric.id(targetBill).remove() 
+				
+				user.save(function(err,doc){
+					if(err){
+						console.log("ERROR!", err)
+					}
+					else{
+						res.redirect('/bills')
+					}
+				})
+				// console.log("found it", findBill)
+			
+			})
+				
 	}
 
 

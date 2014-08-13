@@ -13,11 +13,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.get('/', indexController.index);
 app.get('/bills', indexController.bills);
-// app.get('/waterbill', indexController.water);
+app.get('/waterbill', indexController.water);
 
-app.get('/footprint', indexController.footprint)
+app.get('/footprint', indexController.footprint);
 
-
+// removing bills
+app.get('/bills/remove/:billId', indexController.removeelec);
 
 
 // // // Submit entry is the submitted form when accessed as a POST
