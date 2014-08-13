@@ -7,11 +7,19 @@ var indexController = {
 			res.render('index', {user:doc})
 		})
 	},
+
 	bills: function(req, res) {
 		Newproperty.findOne({},function(err, doc) {
 			res.render('bills', {user:doc})
 		})
 	},
+
+	// water: function(req, res) {
+	// 	Newproperty.findOne({},function(err, doc) {
+	// 		res.render('waterbill', {user:doc})
+	// 	})
+	// },
+
 	footprint: function(req, res) {
 		Newproperty.findOne({},function(err, doc) {
 			res.render('footprint', {user:doc})
@@ -44,8 +52,6 @@ var indexController = {
 	// i want to this keep the user on the propery form page after it collects the data
 	},
 
-
-
 	elecBill: function(req, res) {
 		console.log("submited!!1")
 		console.log(req.body)
@@ -71,9 +77,34 @@ var indexController = {
 
 		})
 		
+	},
+
+	waterBill: function(req, res) {
+		console.log("submited!!1")
+		console.log(req.body)
+		Newproperty.findOne({}, function(err,user){
+			var waterBill = {
+				waStart: req.body.waStart,
+				waEnd: req.body.waEnd,
+				waUsage: req.body.waUsage,
+				waCost: req.body.waCost,
+			};
+			console.log('this bill', waterBill)
+			user.houses[0].bills.water.push(waterBill);
+			// user.save();
+
+			user.save(function(err,doc){
+			if(err){
+				console.log("ERROR!", err)
+			}
+			else{
+				res.redirect('/bills#water')
+			}
+		})
+
+		})
+		
 	}
-
-
 
 
 

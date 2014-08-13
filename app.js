@@ -12,7 +12,9 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.get('/', indexController.index);
-app.get('/bills', indexController.bills)
+app.get('/bills', indexController.bills);
+// app.get('/waterbill', indexController.water);
+
 app.get('/footprint', indexController.footprint)
 
 
@@ -23,7 +25,7 @@ app.post('/propertySubmission', indexController.submission);
 
 app.post('/elecBillSubmission', indexController.elecBill);
 
-
+app.post('/waterBillSubmission', indexController.waterBill);
 
 var server = app.listen(5365, function() {
 	console.log('Express server listening on port ' + server.address().port);

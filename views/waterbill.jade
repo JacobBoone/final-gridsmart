@@ -14,14 +14,14 @@ block content
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
-					li.active
-						a(href="#electric" class="active" role="tab" data-toggle="tab") Electric
 					li
-						a(href="#water" role="tab" data-toggle="tab") Water
+						a(href="#electric" role="tab" data-toggle="tab") Electric
+					li.active
+						a(href="#water" class="active") Water
 					//- li
 						a(href="#fuel" role="tab" data-toggle="tab") Fuel
 				div.tab-content
-					div#electric.tab-pane.active
+					//- div#electric.tab-pane.active
 						h3.panel-heading Electric Bills
 						table.table
 							thead
@@ -40,16 +40,16 @@ block content
 															form#elecbill-form.form-horizontal(action="/elecBillSubmission", method="post", role="form")
 																.form-group
 																	label Bill Start Date:
-																	input.form-control.elStart-entry.input-sm.bill-form(name="elStart" type="date" required)
+																	input.form-control.elStart-entry.input-sm.bill-form(name="elStart" type="date")
 																.form-group
 																	label Bill End Date:
-																	input.form-control.elEnd-entry.input-sm.bill-form(name="elEnd" type="date" required)
+																	input.form-control.elEnd-entry.input-sm.bill-form(name="elEnd" type="date")
 																.form-group
 																	label Usage (kWh):
-																	input.form-control.elUsage-entry.input-sm.bill-form(name="elUsage" type="number" required)
+																	input.form-control.elUsage-entry.input-sm.bill-form(name="elUsage" type="number")
 																.form-group
 																	label Total Cost:
-																	input.form-control.elCost-entry.input-sm.bill-form(name="elCost" type="text" required)
+																	input.form-control.elCost-entry.input-sm.bill-form(name="elCost" type="text")
 																.form-group
 																	button.btn.btn-default(type='button', data-dismiss='modal') Close
 																	input.btn.btn-primary.save-elecBill(type='submit' value="Save Changes")
