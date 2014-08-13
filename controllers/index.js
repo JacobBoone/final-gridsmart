@@ -167,6 +167,17 @@ var indexController = {
 			})
 				
 	}
+	// dont FORGET THE COMMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	// whatever: function(req, res) {
+	// 	Newproperty.findOne({userId:req.params.userId}, function(err,data){
+
+
+
+
+
+	// 	})
+	// }
 
 
 

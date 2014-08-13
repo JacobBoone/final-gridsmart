@@ -1,10 +1,12 @@
 $(document).ready(function() {                                  // from zipLookup (https://code.google.com/p/ziplookup/) When the document loads,
     
-    $('.location-entry[name=zipcode]').blur(function(){                        // Set on blur
+    $('.location-entry[name=zipcode]').on('input',function(){                        // Set on blur
+        var zipcode = $(this).val();
+        if (zipcode.length >=5){
         $.zipLookup(                                            // Do a Zip code Lookup
             $(this).val(),                                      // Zip code Field Value
             function(cityName, stateName, stateShortName){      // If Successful,
-
+                console.log("here")
                 $('.zip-info').html(cityName + ', ' + stateShortName);            // Add a message with the city/state
                 // $('input[name=city]').val(cityName);            // Add a message with the city/state
 
@@ -12,9 +14,73 @@ $(document).ready(function() {                                  // from zipLooku
             function(errMsg){                                   // If Zip couldn't be found,
                 $('.zip-info').html("Error: " + errMsg);         // Add an error message
             });
+        }
+
     });
 
-   
+    // $('.my-zip[name=zipcode]').on('input',function(){                        // Set on blur
+    //     var zipcode = $(this).val();
+    //     if (zipcode.length >=5){
+    //     $.zipLookup(                                            // Do a Zip code Lookup
+    //         $(this).val(),                                      // Zip code Field Value
+    //         function(cityName, stateName, stateShortName){      // If Successful,
+    //             console.log("here")
+    //             $('.zip-info').html(cityName + ', ' + stateShortName);            // Add a message with the city/state
+    //             // $('input[name=city]').val(cityName);            // Add a message with the city/state
+
+    //         },
+    //         function(errMsg){                                   // If Zip couldn't be found,
+    //             $('.zip-info').html("Error: " + errMsg);         // Add an error message
+    //         });
+    //     }
+
+    // });
+
+
+// manually input chart
+
+
+new Morris.Line({
+  // ID of the element in which to draw the chart.
+  element: 'newchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+    { year: '2008', value: 20 },
+    { year: '2009', value: 10 },
+    { year: '2010', value: 5 },
+    { year: '2011', value: 5 },
+    { year: '2012', value: 20 }
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'year',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+// MY START AT A CHART ---------------------------------
+
+    // $.get('/something', function(whatever){
+    //     new Morris.Line({
+    //       // ID of the element in which to draw the chart.
+    //       element: 'electricchart',
+    //       // Chart data records -- each entry in this array corresponds to a point on
+    //       // the chart.
+    //       data: whatever,
+
+    //       // The name of the data record attribute that contains x-values.
+    //       xkey: 'start',
+    //       // A list of names of data record attributes that contain y-values.
+    //       ykeys: ['usage'],
+    //       // Labels for the ykeys -- will be displayed when you hover over the
+    //       // chart.
+    //       labels: ['kWh']
+    //     });
+    // })
+
 
 
     // $('.submit-button').click(function(){

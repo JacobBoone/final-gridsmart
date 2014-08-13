@@ -16,6 +16,8 @@ app.get('/users/:userId/bills', indexController.bills);
 app.get('/users/:userId/waterbill', indexController.water);
 app.get('/users/:userId/footprint', indexController.footprint);
 
+// app.get('/somthing', indexController.whatever);
+
 // removing bills
 app.get('/users/:userId/bills/remove/:billId', indexController.removeelec);
 app.get('/users/:userId/waterbill/remove/:billId', indexController.removewater);

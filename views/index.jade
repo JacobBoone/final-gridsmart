@@ -17,8 +17,8 @@ block content
 				h3 Property Details
 				if user
 					//- .something Property entered #{user.houses[0].zipcode}
-					p.zip-info 
-					input.form-control.hidden(name="zipcode" type="text" placeholder="#{user.houses[0].zipcode}")
+					//- p.zip-info 
+					//- input.form-control.my-zip(name="zipcode" type="text" value="#{user.houses[0].zipcode}")
 					p
 						strong(name="zipcode") Location: 
 						| #{user.houses[0].zipcode}
