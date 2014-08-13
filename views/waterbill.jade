@@ -61,9 +61,8 @@ block content
 							for bill in user.houses[0].bills.water
 								tr.water-row
 									td
-										//- append these buttons dynamically when new bill added
-										button.btn.btn-warning.btn-xs(id="waDelete") Delete
-										button.btn.btn-info.btn-xs(id="waEdit") Edit
+										a.btn.btn-warning.btn-xs(id="waDelete" href="/waterbill/remove/#{bill._id}") Delete
+										a.btn.btn-info.btn-xs(id="waEdit") Edit
 									td=bill.waStart
 									td=bill.waEnd
 									td=bill.waUsage

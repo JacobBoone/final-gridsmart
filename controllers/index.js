@@ -94,13 +94,13 @@ var indexController = {
 			// user.save();
 
 			user.save(function(err,doc){
-			if(err){
-				console.log("ERROR!", err)
-			}
-			else{
-				res.redirect('/waterbill')
-			}
-		})
+				if(err){
+					console.log("ERROR!", err)
+				}
+				else{
+					res.redirect('/waterbill')
+				}
+			})
 
 		})
 		
@@ -117,14 +117,41 @@ var indexController = {
 			// involves
 			
 			// review - http://mongoosejs.com/docs/subdocs.html
-			var findBill = user.houses[0].bills.electric.id(targetBill).remove() 
+			var findBill = user.houses[0].bills.electric.id(targetBill).remove(); 
+				
+			user.save(function(err,doc){
+				if(err){
+					console.log("ERROR!", err)
+				}
+				else{
+					res.redirect('/bills')
+				}
+			})
+				// console.log("found it", findBill)
+			
+			})
+				
+	},
+
+	removewater: function(req, res) {
+		// Pull the billId from the url
+    	var targetWaterBill = req.params.billId;
+    	console.log(targetWaterBill)
+    	Newproperty.findOne({}, function(err,user){
+			// STEPS
+			// 1.locate matching bill
+			// 2.splice/ remove bill out of the array
+			// involves
+			
+			// review - http://mongoosejs.com/docs/subdocs.html
+			var findBill = user.houses[0].bills.water.id(targetWaterBill).remove();
 				
 				user.save(function(err,doc){
 					if(err){
 						console.log("ERROR!", err)
 					}
 					else{
-						res.redirect('/bills')
+						res.redirect('/waterbill')
 					}
 				})
 				// console.log("found it", findBill)

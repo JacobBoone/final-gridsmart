@@ -19,6 +19,7 @@ app.get('/footprint', indexController.footprint);
 
 // removing bills
 app.get('/bills/remove/:billId', indexController.removeelec);
+app.get('/waterbill/remove/:billId', indexController.removewater);
 
 
 // // // Submit entry is the submitted form when accessed as a POST
