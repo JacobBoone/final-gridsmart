@@ -5,6 +5,8 @@ var Newproperty = mongoose.model('Newproperty',{
 	name: String,
 	houses:[{
 		zipcode: String,
+		city: String,
+		state: String,
 		buildingType: String,
 		yearBuilt: String,
 		sqft: String,

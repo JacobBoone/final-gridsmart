@@ -16,19 +16,16 @@ block content
 			div#property.tab-pane.active
 				h3 Property Details
 				if user
-					//- .something Property entered #{user.houses[0].zipcode}
-					//- p.zip-info 
-					//- input.form-control.my-zip(name="zipcode" type="text" value="#{user.houses[0].zipcode}")
 					p
 						strong(name="zipcode") Location: 
-						| #{user.houses[0].zipcode}
+						| #{user.houses[0].city}, #{user.houses[0].state} #{user.houses[0].zipcode}
 						
 					p
 						strong Building Type: 
 						| #{user.houses[0].buildingType}
 					p
 						strong Year Built: 
-						| #{user.houses[0].yearBuilt}	
+						| #{user.houses[0].yearBuilt}
 					p
 						strong Square Footage: 
 						| #{user.houses[0].sqft} sf.
@@ -42,7 +39,13 @@ block content
 							p.zip-info
 							input.form-control.location-entry.input-sm(name="zipcode" type="text" placeholder="Zipcode" required)
 						.form-group
-							label Building Type:   
+							//- label City:
+							input.form-control.city-entry.input-sm(name="city" type="text" placeholder="City" required)
+						.form-group
+							//- label State:
+							input.form-control.state-entry.input-sm(name="state" type="text" placeholder="State" required)
+						.form-group
+							label Building Type:
 							select.option-menu.building-entry(name="buildingtype")
 								option(value="Residential") Home (Residence)
 								option(value="Commercial") Business (Commercial)	

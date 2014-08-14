@@ -35,6 +35,8 @@ var indexController = {
 		userId:req.params.userId,
 		houses:[{
 			zipcode: req.body.zipcode,
+			city: req.body.city,
+			state: req.body.state,
 			buildingType: req.body.buildingtype,
 			yearBuilt: req.body.yearbuilt,
 			sqft: req.body.sqft,
@@ -166,18 +168,23 @@ var indexController = {
 			
 			})
 				
-	}
+	},
 	// dont FORGET THE COMMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	// whatever: function(req, res) {
-	// 	Newproperty.findOne({userId:req.params.userId}, function(err,data){
+	findelecbills: function(req, res) {
+		Newproperty.findOne({userId:req.params.userId}, function(err,user){
+			console.log(user)
+			var targetChartBills = user.houses[0].bills.electric;
+    			console.log(targetChartBills)
+    			res.send(targetChartBills)
 
 
 
 
 
-	// 	})
-	// }
+
+		})
+	}
 
 
 

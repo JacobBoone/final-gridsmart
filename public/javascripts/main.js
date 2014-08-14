@@ -7,7 +7,9 @@ $(document).ready(function() {                                  // from zipLooku
             $(this).val(),                                      // Zip code Field Value
             function(cityName, stateName, stateShortName){      // If Successful,
                 console.log("here")
-                $('.zip-info').html(cityName + ', ' + stateShortName);            // Add a message with the city/state
+                // $('.zip-info').html(cityName + ', ' + stateShortName);            // Add a message with the city/state
+                $(".city-entry[name=city]").val(cityName);
+                $(".state-entry[name=state]").val(stateShortName);
                 // $('input[name=city]').val(cityName);            // Add a message with the city/state
 
             },
@@ -62,24 +64,31 @@ new Morris.Line({
 });
 
 // MY START AT A CHART ---------------------------------
+// console.log("hello", window.location.href.split('/'))
+// console.log("newhello")
 
-    // $.get('/something', function(whatever){
-    //     new Morris.Line({
-    //       // ID of the element in which to draw the chart.
-    //       element: 'electricchart',
-    //       // Chart data records -- each entry in this array corresponds to a point on
-    //       // the chart.
-    //       data: whatever,
+    $.get('forelecchart', function(whatever){
+        console.log(whatever)
+       var elChartData = whatever.map(function(data) {
+         return {elEnd: data.elEnd, elUsage:data.elUsage }
+        })
+       console.log('chartformat',elChartData)
+        new Morris.Line({
+          // ID of the element in which to draw the chart.
+          element: 'electricchart',
+          // Chart data records -- each entry in this array corresponds to a point on
+          // the chart.
+          data: elChartData,
 
-    //       // The name of the data record attribute that contains x-values.
-    //       xkey: 'start',
-    //       // A list of names of data record attributes that contain y-values.
-    //       ykeys: ['usage'],
-    //       // Labels for the ykeys -- will be displayed when you hover over the
-    //       // chart.
-    //       labels: ['kWh']
-    //     });
-    // })
+          // The name of the data record attribute that contains x-values.
+          xkey: 'elEnd',
+          // A list of names of data record attributes that contain y-values.
+          ykeys: ['elUsage'],
+          // Labels for the ykeys -- will be displayed when you hover over the
+          // chart.
+          labels: ['kWh']
+        });
+    })
 
 
 
