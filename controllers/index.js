@@ -180,6 +180,9 @@ var indexController = {
 		Newproperty.findOne({userId:req.params.userId}, function(err,user){
 			console.log(user)
 			var targetChartBills = user.houses[0].bills.electric;
+    			
+
+
     			console.log(targetChartBills)
     			res.send(targetChartBills)
 
@@ -189,7 +192,23 @@ var indexController = {
 
 
 		})
-	}
+	},
+
+	findwaterbills: function(req, res) {
+		Newproperty.findOne({userId:req.params.userId}, function(err,user){
+			console.log(user)
+			var targetWaterChartBills = user.houses[0].bills.water;
+    			console.log(targetWaterChartBills)
+    			res.send(targetWaterChartBills)
+
+
+
+
+
+
+		})
+	},
+
 
 
 

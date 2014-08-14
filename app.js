@@ -17,7 +17,9 @@ app.get('/users/:userId/waterbill', indexController.water);
 app.get('/users/:userId/footprint', indexController.footprint);
 app.get('/users/:userId/waterfootprint', indexController.waterfootprint);
 
+// gets info from DB for Charts
 app.get('/users/:userId/forelecchart', indexController.findelecbills);
+app.get('/users/:userId/forwaterchart', indexController.findwaterbills);
 
 // removing bills
 app.get('/users/:userId/bills/remove/:billId', indexController.removeelec);

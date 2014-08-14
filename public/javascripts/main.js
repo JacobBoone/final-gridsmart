@@ -72,13 +72,14 @@ $(document).ready(function() {                                  // from zipLooku
        var elChartData = whatever.map(function(data) {
          return {endDate: data.elEnd, usage:data.elUsage, cost:data.elCost }
         })
-       console.log('chartformat',elChartData)
+       console.log('elecformat',elChartData)
         new Morris.Line({
           // ID of the element in which to draw the chart.
           element: 'electricchart',
           // Chart data records -- each entry in this array corresponds to a point on
           // the chart.
           data: elChartData,
+
 
           // The name of the data record attribute that contains x-values.
           xkey: 'endDate',
@@ -87,10 +88,47 @@ $(document).ready(function() {                                  // from zipLooku
           // Labels for the ykeys -- will be displayed when you hover over the
           // chart.
           labels: ['kWh', '$'],
+          xlabels:["year"],
+          continuousLine:['true'],
+          // pointSize:0
+          // xLabelFormat: function (x) {
+          //         var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+          //         var month = IndexToMonth[ x.getMonth() ];
+          //         var year = x.getFullYear();
+          //         return year + ' ' + month;
+          //     },
+        });
+    });
+
+
+
+    $.get('forwaterchart', function(whatever){
+        console.log(whatever)
+       var waChartData = whatever.map(function(data) {
+         return {startDate: data.waStart, endDate: data.waEnd, usage:data.waUsage, cost:data.waCost }
+        })
+       console.log('waterformat',waChartData)
+        new Morris.Line({
+          // ID of the element in which to draw the chart.
+          element: 'waterchart',
+          // Chart data records -- each entry in this array corresponds to a point on
+          // the chart.
+          data: waChartData,
+
+          // The name of the data record attribute that contains x-values.
+          xkey: 'endDate',
+          // A list of names of data record attributes that contain y-values.
+          ykeys: ['usage'],
+          // Labels for the ykeys -- will be displayed when you hover over the
+          // chart.
+          labels: ['gallons', '$'],
           xlabels:["month"],
           continuousLine:['true']
         });
-    })
+    });
+
+
+
 
 
 
