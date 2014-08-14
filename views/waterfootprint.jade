@@ -14,15 +14,16 @@ block content
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
-					li.active
-						a(href="/users/#{userId}/footprint" class="active") Energy Consumption
 					li
-						a(href="/users/#{userId}/waterfootprint") Water Consumption
+						a(href="/users/#{userId}/footprint") Energy Consumption
+					li.active
+						a(href="/users/#{userId}/waterfootprint"  class="active") Water Consumption
 				div.tab-content
 					div#footprint.tab-pane.active
-						h3 Electric Usage
+						h3 Water Usage
 						//- div#newchart(style="height:250px")
-						div#electricchart(style="height:250px; width:500px")
+						div#waterchart(style="height:250px; width:500px")
+
 
 
 

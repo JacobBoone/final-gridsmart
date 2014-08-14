@@ -25,6 +25,11 @@ var indexController = {
 			res.render('footprint', {user:doc, userId:req.params.userId})
 		})
 	},
+	waterfootprint: function(req, res) {
+		Newproperty.findOne({userId:req.params.userId},function(err, doc) {
+			res.render('waterfootprint', {user:doc, userId:req.params.userId})
+		})
+	},
 
 
 	submission: function(req, res){
