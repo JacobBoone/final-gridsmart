@@ -76,4 +76,18 @@ h1{
 	color:red;
 }
 
+.my-tables{
+	color: lightgrey;
+	/*font-weight: none;*/
+	margin-left: 10px;
+	font-size: 10px;
+	/*border-top:none;*/
+}
+
+.narrative{
+	padding-left: 10px;
+	color: lightgrey;
+}
+
+
 

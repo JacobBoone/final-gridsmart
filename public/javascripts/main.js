@@ -20,7 +20,16 @@ $(document).ready(function() {                                  // from zipLooku
 
     });
 
+// table sorter...
+
+// $(function(){
+//   $("#sortelec").tablesorter();
+// });
   
+
+// $(function(){
+//   $("#sortwater").tablesorter();
+// }); 
 // manually input chart
 
 
@@ -78,7 +87,7 @@ $(document).ready(function() {                                  // from zipLooku
         };
         console.log(dataSet)
 
-
+        var elMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 // my attempts at looping thru date info...
         // console.log(whatever, 'whatever')
         // var myData = whatever
@@ -126,13 +135,15 @@ $(document).ready(function() {                                  // from zipLooku
           // chart.
           labels: ['kWh', '$'],
           xlabels:["month"],
-          continuousLine:false,
+          // xLabelFormat: function (x) {return elMonths }
+          // continuousLine:false,
           hoverCallback:function(index, options,content,row){
             var output =""
             for (var key in keys){
                 key = keys[key]
                 if (row[key]!==null){
-                    output += key +' kWh: ' +row[key] + "<br>"
+                    // output += key +' kWh: ' +row[key] + "<br>"
+                    output +=   ' kWh: ' +row[key] + "<br>"
                 }
             }
             return output
@@ -144,38 +155,108 @@ $(document).ready(function() {                                  // from zipLooku
 
 
 
-// this is continuous charted info...................
 
+// // this is continuous charted info...................
+
+//     $.get('forwaterchart', function(whatever){
+//         // console.log(whatever)
+//        var waChartData = whatever.map(function(data) {
+//          return {startDate: data.waStart, endDate: data.waEnd, usage:data.waUsage, cost:data.waCost }
+//         })
+//        // console.log('waterformat',waChartData)
+//         new Morris.Line({
+//           // ID of the element in which to draw the chart.
+//           element: 'waterchart',
+//           // Chart data records -- each entry in this array corresponds to a point on
+//           // the chart.
+//           data: waChartData,
+
+//           // The name of the data record attribute that contains x-values.
+//           xkey: 'endDate',
+//           // A list of names of data record attributes that contain y-values.
+//           ykeys: ['usage'],
+//           // Labels for the ykeys -- will be displayed when you hover over the
+//           // chart.
+//           labels: ['gallons', '$'],
+//           xlabels:["month"],
+//           continuousLine:['true'],
+//           hoverCallback:function(index, options,content,row){
+//             return row.endDate + "<br>" + "$" + row.cost + "<br>" + "gallons: " + row.usage;
+//             }
+
+
+//         });
+//     });
+
+
+// for yr over yr water chart
     $.get('forwaterchart', function(whatever){
-        // console.log(whatever)
-       var waChartData = whatever.map(function(data) {
-         return {startDate: data.waStart, endDate: data.waEnd, usage:data.waUsage, cost:data.waCost }
-        })
-       // console.log('waterformat',waChartData)
+       
+        var dataSet = [];
+        var years = _.groupBy(whatever, function(item){
+            return +item.waEnd.split("-")[0]
+        });
+        // console.log(years)
+        var keys=_.keys(years)
+        // console.log(keys)
+        for (var i = 0; i < 12; i++) {
+            var dataItem = {
+                month:(i+1)
+            };
+            for(var year in years){
+                var dataPoint = _.find(years[year], function(item){
+                    return +item.waEnd.split("-")[1]===i+1
+                })
+                if (dataPoint){
+                    dataItem[year]=dataPoint.waUsage;
+                }
+       // the line is not entered if MONTHLY value is null. since my bills are quarterly it but others could be monthly it may be best to portray the info in either a monthly or quarterly fashion
+                // else{
+                //     dataItem[year]=null
+                // }
+
+            }
+            dataSet.push(dataItem)   
+        };
+        console.log(dataSet, 'water')
+
+ 
         new Morris.Line({
           // ID of the element in which to draw the chart.
           element: 'waterchart',
           // Chart data records -- each entry in this array corresponds to a point on
           // the chart.
-          data: waChartData,
+          data: dataSet,
+
 
           // The name of the data record attribute that contains x-values.
-          xkey: 'endDate',
+          xkey: 'month',
           // A list of names of data record attributes that contain y-values.
-          ykeys: ['usage'],
+          ykeys: keys,
           // Labels for the ykeys -- will be displayed when you hover over the
           // chart.
-          labels: ['gallons', '$'],
-          xlabels:["month"],
-          continuousLine:['true'],
-          hoverCallback:function(index, options,content,row){
-            return row.endDate + "<br>" + "$" + row.cost + "<br>" + "gallons: " + row.usage;
-            }
+          labels: ['gallons'],
+          // xlabels:["month"],
 
+          continuousLine:true,
+          hoverCallback:function(index, options,content,row){
+            var output =""
+            for (var key in keys){
+                key = keys[key]
+                if (row[key]!==null){
+                    // output += key +' kWh: ' +row[key] + "<br>"
+                    output +=   ' gallons: ' +row[key] + "<br>"
+                }
+                // else(row[key===null]){
+                //   output+=null
+                // }
+            }
+            return output
+            // return row.endDate + "<br>" + "$" + row.cost + "<br>" + "kWh: " + row.usage;
+          }
 
         });
     });
-
 
 
 });
