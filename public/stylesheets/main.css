@@ -1,12 +1,25 @@
 body{
+/*background-color: beige;*/
+/*background-opacity: 0.5;*/
+}
 
+h1{
+	font-family: fantasy;
+	margin-left: 100px;
+	color:#00CC00;
+	font-size: 50px;
 }
 /*.location-entry{
 	background-color: blue;
 }*/
 .main-panel{
 	margin-left: 100px;
-	width: 60%;
+	width: 70%;
+	background-color: white;
+	padding: 10px;
+	border-radius: 10px;
+    box-shadow: 12px 12px 10px #888888;
+    border-style: outset;
 
 }
 
@@ -16,6 +29,7 @@ body{
 
 .tab-content{
 	margin-left: 20px;
+
 }
 
 .option-menu{
@@ -40,10 +54,26 @@ body{
 
 
 #elecbill-form, #waterbill-form{
-	padding-left: 70px;
+	/*padding-left: 50px;*/
+	margin-left:44px;
+}
+
+.close-me, .save-me{
+	margin-top: 10px;
+	margin-left:51px;
 }
 
 .modal-dialog{
 	width: 425px;
 
 }
+#elDelete, #waDelete{
+	color:lightgrey;
+	margin-left: 22px;
+}
+
+#elDelete:hover, #waDelete:hover{
+	color:red;
+}
+
+

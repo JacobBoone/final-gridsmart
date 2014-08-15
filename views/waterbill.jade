@@ -10,7 +10,7 @@ block content
 				a(href="/users/#{userId}/bills" class="active") Bills
 			//- electric water and fuel
 			li
-				a(href="/users/#{userId}/footprint") Carbon Footprint/ Usage
+				a(href="/users/#{userId}/footprint") Usage Impact
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
@@ -25,6 +25,10 @@ block content
 					table.table
 						thead
 							tr
+								th Billing Period Start
+								th Billing Period End
+								th Usage (Gallons)
+								th Total Cost
 								th
 									button.btn.btn-info.btn-xs(id="waterAddBill" data-toggle="modal" data-target="#waterModal") Add Bill +
 									#waterModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
@@ -50,23 +54,20 @@ block content
 																label Total Cost:
 																input.form-control.waCost-entry.input-sm.bill-form(name="waCost" type="text" required)
 															.form-group
-																button.btn.btn-default(type='button', data-dismiss='modal') Close
-																input.btn.btn-primary.save-waterBill(type='submit' value="Save Changes")
-								th Billing Period Start
-								th Billing Period End
-								th Usage (Gallons)
-								th Total Cost
+																button.btn.btn-default.close-me(type='button', data-dismiss='modal') Close
+																input.btn.btn-primary.save-waterBill.save-me(type='submit' value="Save Changes")
 						//- HB Placeholder
 						tbody#water-table
 							for bill in user.houses[0].bills.water
 								tr.water-row
-									td
-										a.btn.btn-warning.btn-xs(id="waDelete" href="/users/#{userId}/waterbill/remove/#{bill._id}") Delete
-										//- a.btn.btn-info.btn-xs(id="waEdit") Edit
 									td=bill.waStart
 									td=bill.waEnd
 									td=bill.waUsage
 									td=bill.waCost
+									td
+										//- a.btn.btn-warning.btn-xs(id="waDelete" href="/users/#{userId}/waterbill/remove/#{bill._id}") Delete
+										a.btn.btn-xs(id="waDelete" href="/users/#{userId}/bills/remove/#{bill._id}") ✘
+										//- a.btn.btn-info.btn-xs(id="waEdit") Edit
 								//- HB template
 							//- script#water-template(type="text/x-handlebars-template")
 								tr

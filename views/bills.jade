@@ -10,7 +10,7 @@ block content
 				a(href="/users/#{userId}/bills" class="active") Bills
 			//- electric water and fuel
 			li
-				a(href="/users/#{userId}/footprint") Carbon Footprint/ Usage
+				a(href="/users/#{userId}/footprint") Usage Impact
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
@@ -26,6 +26,11 @@ block content
 						table.table
 							thead
 								tr
+									
+									th Billing Period Start
+									th Billing Period End
+									th Usage (kWh)
+									th Total Cost
 									th
 										button.btn.btn-info.btn-xs(id="elecAddBill" data-toggle="modal" data-target="#elecModal") Add Bill +
 										#elecModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
@@ -51,24 +56,21 @@ block content
 																	label Total Cost:
 																	input.form-control.elCost-entry.input-sm.bill-form(name="elCost" type="text" required)
 																.form-group
-																	button.btn.btn-default(type='button', data-dismiss='modal') Close
-																	input.btn.btn-primary.save-elecBill(type='submit' value="Save Changes")
-									th Billing Period Start
-									th Billing Period End
-									th Usage (kWh)
-									th Total Cost
+																	button.btn.btn-default.close-me(type='button', data-dismiss='modal') Close
+																	input.btn.btn-primary.save-elecBill.save-me(type='submit' value="Save Changes")
 							//- HB Placeholder
 							tbody#elec-table
 								for bill in user.houses[0].bills.electric
 									tr.elec-row
-										td
-											//- append these buttons dynamically when new bill added
-											a.btn.btn-warning.btn-xs(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}") Delete
-											//- a.btn.btn-info.btn-xs(id="elEdit") Edit
+
 										td=bill.elStart
 										td=bill.elEnd
 										td=bill.elUsage
 										td=bill.elCost
+										td
+											//- a.icon-cancel-outline(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}")
+											a.btn.btn-xs(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}") ✘
+											//- a.btn.btn-info.btn-xs(id="elEdit") Edit
 
 
 

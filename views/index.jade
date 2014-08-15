@@ -2,6 +2,7 @@ extends layout
 
 block content
 	h1 Gridsmart
+		//- span Rate your home energy and water usage. Compare and save!
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li.active
@@ -11,7 +12,7 @@ block content
 					a(href="/users/#{userId}/bills") Bills
 				//- electric water and fuel
 				li
-					a(href="/users/#{userId}/footprint") Carbon Footprint/ Usage
+					a(href="/users/#{userId}/footprint") Usage Impact
 		div.tab-content
 			div#property.tab-pane.active
 				h3 Property Details
