@@ -10,7 +10,7 @@ $(document).ready(function() {                                  // from zipLooku
                 // $('.zip-info').html(cityName + ', ' + stateShortName);            // Add a message with the city/state
                 $(".city-entry[name=city]").val(cityName);
                 $(".state-entry[name=state]").val(stateShortName);
-                // $('input[name=city]').val(cityName);            // Add a message with the city/state
+           
 
             },
             function(errMsg){                                   // If Zip couldn't be found,
@@ -20,25 +20,7 @@ $(document).ready(function() {                                  // from zipLooku
 
     });
 
-    // $('.my-zip[name=zipcode]').on('input',function(){                        // Set on blur
-    //     var zipcode = $(this).val();
-    //     if (zipcode.length >=5){
-    //     $.zipLookup(                                            // Do a Zip code Lookup
-    //         $(this).val(),                                      // Zip code Field Value
-    //         function(cityName, stateName, stateShortName){      // If Successful,
-    //             console.log("here")
-    //             $('.zip-info').html(cityName + ', ' + stateShortName);            // Add a message with the city/state
-    //             // $('input[name=city]').val(cityName);            // Add a message with the city/state
-
-    //         },
-    //         function(errMsg){                                   // If Zip couldn't be found,
-    //             $('.zip-info').html("Error: " + errMsg);         // Add an error message
-    //         });
-    //     }
-
-    // });
-
-
+  
 // manually input chart
 
 
@@ -68,46 +50,108 @@ $(document).ready(function() {                                  // from zipLooku
 // console.log("newhello")
 
     $.get('forelecchart', function(whatever){
-        console.log(whatever)
-       var elChartData = whatever.map(function(data) {
-         return {endDate: data.elEnd, usage:data.elUsage, cost:data.elCost }
-        })
-       console.log('elecformat',elChartData)
+       
+        var dataSet = [];
+        var years = _.groupBy(whatever, function(item){
+            return +item.elEnd.split("-")[0]
+        });
+        // console.log(years)
+        var keys=_.keys(years)
+        // console.log(keys)
+        for (var i = 0; i < 12; i++) {
+            var dataItem = {
+                month:(i+1)
+            };
+            for(var year in years){
+                var dataPoint = _.find(years[year], function(item){
+                    return +item.elEnd.split("-")[1]===i+1
+                })
+                if (dataPoint){
+                    dataItem[year]=dataPoint.elUsage;
+                }
+                else{
+                    dataItem[year]=null
+                }
+
+            }
+            dataSet.push(dataItem)   
+        };
+        console.log(dataSet)
+
+
+// my attempts at looping thru date info...
+        // console.log(whatever, 'whatever')
+        // var myData = whatever
+        // console.log(myData,'my data')
+        // console.log(myData.elEnd,'my end data')
+
+        // for (var i = 0; i < myData.length; i++) {
+        //     // console.log(whatever, 'hi')
+        //     // console.log(myData[i].elEnd, "my loop data")
+        //     if (myData[i].elEnd >= "2014-01-01" && myData[i].elEnd <= "2014-12-31"){
+
+        //         var thisYear = myData[i]
+        //         // console.log(myData[i].elEnd, "my loop data")
+        //         // console.log(myData[i], "my loop data")
+        //         console.log(thisYear, 'thisYear')
+        //         // return thisYear
+        //         // var thisYear = myData[i].map(function(data){
+        //             // console.log(thisYear, 'thisYear')
+
+        //     }
+        // }
+        
+       // var elChartData = thisYear.map(function(data) {
+
+       //   return {endDate: data.elEnd, usage:data.elUsage, cost:data.elCost }
+       //  }) 
+        // var elChartData = whatever.map(function(data) {
+
+        //  return {endDate: data.elEnd, usage:data.elUsage, cost:data.elCost }
+        // })
+       // console.log('elecformat',elChartData)
         new Morris.Line({
           // ID of the element in which to draw the chart.
           element: 'electricchart',
           // Chart data records -- each entry in this array corresponds to a point on
           // the chart.
-          data: elChartData,
+          data: dataSet,
 
 
           // The name of the data record attribute that contains x-values.
-          xkey: 'endDate',
+          xkey: 'month',
           // A list of names of data record attributes that contain y-values.
-          ykeys: ['usage', 'cost'],
+          ykeys: keys,
           // Labels for the ykeys -- will be displayed when you hover over the
           // chart.
           labels: ['kWh', '$'],
-          xlabels:["year"],
-          continuousLine:['true'],
-          // pointSize:0
-          // xLabelFormat: function (x) {
-          //         var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-          //         var month = IndexToMonth[ x.getMonth() ];
-          //         var year = x.getFullYear();
-          //         return year + ' ' + month;
-          //     },
+          xlabels:["month"],
+          continuousLine:false,
+          hoverCallback:function(index, options,content,row){
+            var output =""
+            for (var key in keys){
+                key = keys[key]
+                if (row[key]!==null){
+                    output += key +' kWh: ' +row[key] + "<br>"
+                }
+            }
+            return output
+            // return row.endDate + "<br>" + "$" + row.cost + "<br>" + "kWh: " + row.usage;
+          }
+
         });
     });
 
 
 
+// this is continuous charted info...................
+
     $.get('forwaterchart', function(whatever){
-        console.log(whatever)
+        // console.log(whatever)
        var waChartData = whatever.map(function(data) {
          return {startDate: data.waStart, endDate: data.waEnd, usage:data.waUsage, cost:data.waCost }
         })
-       console.log('waterformat',waChartData)
+       // console.log('waterformat',waChartData)
         new Morris.Line({
           // ID of the element in which to draw the chart.
           element: 'waterchart',
@@ -123,116 +167,15 @@ $(document).ready(function() {                                  // from zipLooku
           // chart.
           labels: ['gallons', '$'],
           xlabels:["month"],
-          continuousLine:['true']
+          continuousLine:['true'],
+          hoverCallback:function(index, options,content,row){
+            return row.endDate + "<br>" + "$" + row.cost + "<br>" + "gallons: " + row.usage;
+            }
+
+
         });
     });
 
 
-
-
-
-
-    // $('.submit-button').click(function(){
-
-    //     console.log("Submit click")
-
-    // });
-// // delete individual bills
-//     $('#elDelete').click(function(){
-//                 console.log('delete me')
-//                 $(this).closest('.elec-row').remove()
-//         })
-
-
-
-
-    // // Grab the template source from the html script-tag
-    // var elTemplateSource = $('#elec-template').html();
-    // console.log('Template Source:', elTemplateSource);
-
-    // // Compile a handlebars template
-    // var elTemplate = Handlebars.compile(elTemplateSource);
-    // // Handlebars.compile takes in a string of HTML
-    // // and gives back a function
-    // console.log('MyTemplate:', elTemplate);
-
-
-// electric bill click handler
- //    $('.save-elecBill').click(function(){
-        
-
- //        var start = $('.elStart-entry').val()
- //        var end = $('.elEnd-entry').val()
- //        var usage = $('.elUsage-entry').val()
- //        var cost = $('.elCost-entry').val()
-
- //        // var electricBill = new UtilityBill(start, end, usage, cost)
- //        // Dataset for HB
-
- //        var elecBill = {
- //            start: start,
- //            end: end,
- //            usage:usage,
- //            cost: cost
- //        };
-
- //        $('#elecModal').modal('hide')
-
- //        $('.elStart-entry').val('')
- //        $('.elEnd-entry').val('')
- //        $('.elUsage-entry').val('')
- //        $('.elCost-entry').val('')
-
- //        $('#elec-table').append(elTemplate(elecBill))
- // // is only deleting the first row........
- //        $('#elDelete').click(function(){
- //            console.log('delete me')
- //            $(this).closest('.elec-row').remove()
- //    })
-
- //        // console.log("Submit Electric Bill")
- //        console.log(elecBill)
- //    })
-
-
-
-    // // Grab the template source from the html script-tag
-    // var waTemplateSource = $('#water-template').html();
-    // console.log('Template Source:', waTemplateSource);
-
-    // // Compile a handlebars template
-    // var waTemplate = Handlebars.compile(waTemplateSource);
-    // // Handlebars.compile takes in a string of HTML
-    // // and gives back a function
-    // console.log('MyTemplate:', waTemplate);
-
-
-
-// water bill click handler
-    // $('.save-waterBill').click(function(){
-    //     var start = $('.waStart-entry').val()
-    //     var end = $('.waEnd-entry').val()
-    //     var usage = $('.waUsage-entry').val()
-    //     var cost = $('.waCost-entry').val()
-
-    //     var waterBill = {
-    //         start: start,
-    //         end: end,
-    //         usage:usage,
-    //         cost: cost
-    //     };
-
-    //     $('#waterModal').modal('hide')
-
-    //     $('.waStart-entry').val('')
-    //     $('.waEnd-entry').val('')
-    //     $('.waUsage-entry').val('')
-    //     $('.waCost-entry').val('')
-
-    //     $('#water-table').append(waTemplate(waterBill))
-
-    //     // console.log("Submit Water Bill")
-    //     console.log(waterBill)
-    // })
 
 });

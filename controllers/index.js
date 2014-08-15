@@ -174,14 +174,13 @@ var indexController = {
 			})
 				
 	},
-	// dont FORGET THE COMMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+// the following get the bills and sends the array of object to the ajax call,   
 	findelecbills: function(req, res) {
 		Newproperty.findOne({userId:req.params.userId}, function(err,user){
 			console.log(user)
 			var targetChartBills = user.houses[0].bills.electric;
-    			
-
+   
 
     			console.log(targetChartBills)
     			res.send(targetChartBills)
