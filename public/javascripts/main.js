@@ -19,7 +19,6 @@ $(document).ready(function() {                                  // from zipLooku
         }
 
     });
-
 // table sorter...
 
 // $(function(){
