@@ -87,6 +87,6 @@ app.post('/users/:userId/elecBillSubmission', indexController.elecBill);
 
 app.post('/users/:userId/waterBillSubmission', indexController.waterBill);*/
 
-var server = app.listen(5365, function() {
+var server = app.listen(process.env.PORT || 5365, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });
