@@ -11,7 +11,8 @@ html(lang='en')
 
 	body
 		if user
-			p: a(href="/auth/logout") Log out
+			h4.welcome Welcome, #{user.username}!
+			p.logout: a(href="/auth/logout") Logout
 		block content
 		script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js")
 		script(src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js")

@@ -1,13 +1,39 @@
 body{
 /*background-color: beige;*/
 /*background-opacity: 0.5;*/
+/*background-image: url(http://cdn.desktopwallpapers4.me/wallpapers/abstract/1366x768/1/5155-curves-1366x768-abstract-wallpaper.jpg);*/
+
+ background: url("images/curves.png")  no-repeat center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
 }
 
 h1{
 	font-family: fantasy;
+	font-weight: bold;
 	margin-left: 100px;
-	color:#00CC00;
+	/*color:#00CC00;*/
 	font-size: 50px;
+}
+h2{
+	font-family: fantasy;
+}
+.welcome{
+	margin-left: 100px;
+	display: inline-block;
+}
+.logout{
+	display: inline-block;
+	margin-left: 2%;
+	font-size: 10px;
+}
+
+.login{
+	width: 50%;
+	margin-left: 40%;
+
 }
 /*.location-entry{
 	background-color: blue;
