@@ -6,17 +6,17 @@ block content
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li.active
-				a(href="/users/#{userId}") Property
+				a(href="/") Property
 			if user 
 				li
-					a(href="/users/#{userId}/bills") Bills
+					a(href="/bills") Bills
 				//- electric water and fuel
 				li
-					a(href="/users/#{userId}/footprint") Usage Impact
+					a(href="/footprint") Usage Impact
 		div.tab-content
 			div#property.tab-pane.active
 				h3 Property Details
-				if user
+				if user.houses[0]
 					p
 						strong(name="zipcode") Location: 
 						| #{user.houses[0].city}, #{user.houses[0].state} #{user.houses[0].zipcode}
@@ -32,7 +32,7 @@ block content
 						| #{user.houses[0].sqft} sf.
 
 				else
-					form#property-form.form-horizontal(action="/users/#{userId}/propertySubmission" method="post")
+					form#property-form.form-horizontal(action="/propertySubmission" method="post")
 						.form-group
 							label.control-label(for="location-entry") Location:
 							//- When the zipcode is selected fills in other hidden places with the zip, city, state

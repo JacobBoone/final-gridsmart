@@ -5,19 +5,19 @@ block content
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li
-				a(href="/users/#{userId}") Property
+				a(href="/") Property
 			li.active
-				a(href="/users/#{userId}/bills" class="active") Bills
+				a(href="/bills" class="active") Bills
 			//- electric water and fuel
 			li
-				a(href="/users/#{userId}/footprint") Usage Impact
+				a(href="/footprint") Usage Impact
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li.active
-						a(href="/users/#{userId}/bills" class="active") Electric
+						a(href="/bills" class="active") Electric
 					li
-						a(href="/users/#{userId}/waterbill") Water
+						a(href="/waterbill") Water
 					//- li
 						a(href="#fuel" role="tab" data-toggle="tab") Fuel
 				div.tab-content
@@ -43,7 +43,7 @@ block content
 															span.sr-only Close
 														h3#myElecBillLabel.modal-title New Electric Bill
 														.modal-body
-															form#elecbill-form.form-horizontal(action="/users/#{userId}/elecBillSubmission", method="post", role="form")
+															form#elecbill-form.form-horizontal(action="/elecBillSubmission", method="post", role="form")
 																.form-group
 																	label Bill Start Date:
 																	input.form-control.elStart-entry.input-sm.bill-form(name="elStart" type="date" required)
@@ -70,7 +70,7 @@ block content
 										td=bill.elCost
 										td
 											//- a.icon-cancel-outline(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}")
-											a.btn.btn-xs(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}") ✘
+											a.btn.btn-xs(id="elDelete" href="/bills/remove/#{bill._id}") ✘
 											//- a.btn.btn-info.btn-xs(id="elEdit") Edit
 
 

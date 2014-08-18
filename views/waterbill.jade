@@ -5,19 +5,19 @@ block content
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li
-				a(href="/users/#{userId}/") Property
+				a(href="/") Property
 			li.active
-				a(href="/users/#{userId}/bills" class="active") Bills
+				a(href="/bills" class="active") Bills
 			//- electric water and fuel
 			li
-				a(href="/users/#{userId}/footprint") Usage Impact
+				a(href="/footprint") Usage Impact
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li
-						a(href="/users/#{userId}/bills") Electric
+						a(href="/bills") Electric
 					li.active
-						a(href="/users/#{userId}/waterbill" class="active") Water
+						a(href="/waterbill" class="active") Water
 					//- li
 						a(href="#fuel" role="tab" data-toggle="tab") Fuel
 				div#water.tab-pane
@@ -41,7 +41,7 @@ block content
 														span.sr-only Close
 													h3#myWaterBillLabel.modal-title New Water Bill
 													.modal-body
-														form#waterbill-form.form-horizontal(action="/users/#{userId}/waterBillSubmission" method="post")
+														form#waterbill-form.form-horizontal(action="/waterBillSubmission" method="post")
 															.form-group
 																label Bill Start Date:
 																input.form-control.waStart-entry.input-sm.bill-form(name="waStart" type="date" required)
@@ -67,7 +67,7 @@ block content
 									td=bill.waCost
 									td
 										//- a.btn.btn-warning.btn-xs(id="waDelete" href="/users/#{userId}/waterbill/remove/#{bill._id}") Delete
-										a.btn.btn-xs(id="waDelete" href="/users/#{userId}/bills/remove/#{bill._id}") ✘
+										a.btn.btn-xs(id="waDelete" href="/waterbill/remove/#{bill._id}") ✘
 										//- a.btn.btn-info.btn-xs(id="waEdit") Edit
 								//- HB template
 							//- script#water-template(type="text/x-handlebars-template")

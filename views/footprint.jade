@@ -5,19 +5,19 @@ block content
 	div.main-panel
 		ul.nav.nav-tabs(role="tablist")
 			li
-				a(href="/users/#{userId}") Property
+				a(href="/") Property
 			li
-				a(href="/users/#{userId}/bills") Bills
+				a(href="/bills") Bills
 			//- electric water and fuel
 			li.active
-				a(href="/users/#{userId}/footprint"  class="active") Usage Impact
+				a(href="/footprint"  class="active") Usage Impact
 		div.tab-content
 			div#bills.tab-pane.active
 				ul.nav.nav-pills.nav-justified(role="tablist")
 					li.active
-						a(href="/users/#{userId}/footprint" class="active") Energy Consumption
+						a(href="/footprint" class="active") Energy Consumption
 					li
-						a(href="/users/#{userId}/waterfootprint") Water Consumption
+						a(href="/waterfootprint") Water Consumption
 				div.tab-content
 					div#footprint.tab-pane.active
 						h3 Electric Usage
