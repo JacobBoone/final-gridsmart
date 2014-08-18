@@ -11,7 +11,8 @@ var authenticationController = require('./controllers/authentication');
 var indexController = require('./controllers/index.js');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/gridsmart')
+// mongoose.connect( mongohq || 'mongodb://localhost/gridsmart')
+mongoose.connect('MONGOHQ_URL=mongodb://heroku:8oD_h8mNIGq_odemNNFBmQ1wWgnq8mYgx2hjXodC6gRsZhdpotGJYzfENLMQ56qjm85dl2sgRQpXmhu-lCaMPw@kahana.mongohq.com:10031/app28638282' || 'mongodb://localhost/gridsmart')
 
 
 var app = express();
