@@ -142,7 +142,7 @@ $(document).ready(function() {                                  // from zipLooku
                 key = keys[key]
                 if (row[key]!==null){
                     // output += key +' kWh: ' +row[key] + "<br>"
-                    output +=   ' kWh: ' +row[key] + "<br>"
+                    output +=  "<div class=morris-hover-point style=-webkit-tap-highlight-color:rgba(0,0,0,0)>" +key + ' kWh: ' +row[key] +  "</div>"
                 }
             }
             return output
