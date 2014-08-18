@@ -129,9 +129,78 @@ waterDate    Usage   Cost
 
 
 
+Info for Water bill example
 
-
-
+{
+            waStart: "2014-01-01",
+            waEnd: "2014-01-31",
+            waUsage: “800",
+            waCost: “37.50",
+            _id: ObjectId("53ed0d9abd4f13f97ff92af0")
+          },
+          {
+            waStart: "2014-02-01",
+            waEnd: "2014-02-30",
+            waUsage: “750",
+            waCost: “35.07”,
+            _id: ObjectId("53ed0db9bd4f13f97ff92af1")
+          },
+          {
+            waStart: "2014-03-01",
+            waEnd: "2014-03-30",
+            waUsage: “810”,
+            waCost: “41.62",
+            _id: ObjectId("53ed0dd9bd4f13f97ff92af2")
+          },
+          {
+            waStart: “2014-04-01",
+            waEnd: “2014-04-31",
+            waUsage: “880",
+            waCost: “45.73”,
+            _id: ObjectId("53ed0df8bd4f13f97ff92af3")
+          },
+          {
+            waStart: “2014-05-01",
+            waEnd: "2014-05-30",
+            waUsage: “900",
+            waCost: “48.90”,
+            _id: ObjectId("53ee2d06c10e82d2379eb139")
+          },
+          {
+            waStart: "2014-06-01",
+            waEnd: "2014-06-30",
+            waUsage: “925”,
+            waCost: “53.20”,
+            _id: ObjectId("53ee2d28c10e82d2379eb13a")
+          },
+          {
+            waStart: “2014-07-01",
+            waEnd: "2014-07-30",
+            waUsage: “950",
+            waCost: “59.02”,
+            _id: ObjectId("53ee2d47c10e82d2379eb13b")
+          },
+          {
+            waStart: "2014-08-01",
+            waEnd: "2014-08-30",
+            waUsage: “935",
+            waCost: “55.02”,
+            _id: ObjectId("53ee3026068e16e538118981")
+          },
+          {
+            waStart: “2014-09-01”,
+            waEnd: “2014-09-30",
+            waUsage: “800",
+            waCost: “37.50”,
+            _id: ObjectId("53ee303e068e16e538118982")
+          },
+          {
+            waStart: “2014-10-01”,
+            waEnd: “2014-10-31",
+            waUsage: “790",
+            waCost: “36.02”,
+            _id: ObjectId("53f22bb0a65f62ef195df0af")
+          }
 
 
 
