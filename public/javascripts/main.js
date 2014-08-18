@@ -86,7 +86,7 @@ $(document).ready(function() {                                  // from zipLooku
         };
         console.log(dataSet)
 
-        var elMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
 // my attempts at looping thru date info...
         // console.log(whatever, 'whatever')
         // var myData = whatever
@@ -213,9 +213,9 @@ $(document).ready(function() {                                  // from zipLooku
                     dataItem[year]=dataPoint.waUsage;
                 }
        // the line is not entered if MONTHLY value is null. since my bills are quarterly it but others could be monthly it may be best to portray the info in either a monthly or quarterly fashion
-                // else{
-                //     dataItem[year]=null
-                // }
+                else{
+                    dataItem[year]=null
+                }
 
             }
             dataSet.push(dataItem)   
@@ -238,17 +238,20 @@ $(document).ready(function() {                                  // from zipLooku
           // Labels for the ykeys -- will be displayed when you hover over the
           // chart.
           labels: ['gallons'],
-          // xlabels:["month"],
+          xlabels:["month"],
+          resize:true,
 
           continuousLine:true,
           hoverCallback:function(index, options,content,row){
             var output =""
+            var colors = Morris.Line.prototype.defaults.lineColors
+            var i=0
             for (var key in keys){
                 key = keys[key]
                 if (row[key]!==null){
                     // output += key +' kWh: ' +row[key] + "<br>"
-                    output +=   ' gallons: ' +row[key] + "<br>"
-                }
+                    output +=  "<div class='morris-hover-point' style='color:"+colors[i]+"'>" +key + ' gallons: ' +row[key] +  "</div>"
+                } i++
                 // else(row[key===null]){
                 //   output+=null
                 // }
