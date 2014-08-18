@@ -134,16 +134,19 @@ $(document).ready(function() {                                  // from zipLooku
           // chart.
           labels: ['kWh', '$'],
           xlabels:["month"],
+          resize:true,
           // xLabelFormat: function (x) {return elMonths }
           // continuousLine:false,
           hoverCallback:function(index, options,content,row){
             var output =""
+            var colors = Morris.Line.prototype.defaults.lineColors
+            var i = 0
             for (var key in keys){
                 key = keys[key]
                 if (row[key]!==null){
                     // output += key +' kWh: ' +row[key] + "<br>"
-                    output +=  "<div class=morris-hover-point style=-webkit-tap-highlight-color:rgba(0,0,0,0)>" +key + ' kWh: ' +row[key] +  "</div>"
-                }
+                    output +=  "<div class='morris-hover-point' style='color:"+colors[i]+"'>" +key + ' kWh: ' +row[key] +  "</div>"
+                } i++
             }
             return output
             // return row.endDate + "<br>" + "$" + row.cost + "<br>" + "kWh: " + row.usage;
