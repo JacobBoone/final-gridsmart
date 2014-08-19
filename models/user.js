@@ -35,13 +35,15 @@ var userSchema = mongoose.Schema({
         elStart: String,
         elEnd: String,
         elUsage: String,
-        elCost: String
+        elCost: String,
+        elEvent: String
       }],
       water:[{
         waStart: String,
         waEnd: String,
         waUsage: String,
-        waCost: String
+        waCost: String,
+        waEvent: String
       }],
     }
   }]

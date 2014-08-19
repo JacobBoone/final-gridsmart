@@ -32,6 +32,7 @@ block content
 									th Billing Period End
 									th Usage (kWh)
 									th Total Cost
+									th.clearfix.hidden-xs Event/Project:
 									th
 										button.btn.btn-info.btn-xs(id="elecAddBill" data-toggle="modal" data-target="#elecModal") Add Bill +
 										#elecModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
@@ -57,6 +58,9 @@ block content
 																	label Total Cost:
 																	input.form-control.elCost-entry.input-sm.bill-form(name="elCost" type="text" required)
 																.form-group
+																	label Event/Project:
+																	input.form-control.elEvent-entry.input-sm.bill-form(name="elEvent" type="text" placeholder="ex. new windows, vacation")
+																.form-group
 																	button.btn.btn-default.close-me(type='button', data-dismiss='modal') Close
 																	input.btn.btn-primary.save-elecBill.save-me(type='submit' value="Save Changes")
 							//- HB Placeholder
@@ -68,6 +72,7 @@ block content
 										td=bill.elEnd
 										td=bill.elUsage
 										td=bill.elCost
+										td.clearfix.hidden-xs=bill.elEvent
 										td
 											//- a.icon-cancel-outline(id="elDelete" href="/users/#{userId}/bills/remove/#{bill._id}")
 											a.btn.btn-xs(id="elDelete" href="/bills/remove/#{bill._id}") ✘

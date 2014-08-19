@@ -65,6 +65,7 @@ var indexController = {
 			elEnd: req.body.elEnd,
 			elUsage: req.body.elUsage,
 			elCost: req.body.elCost,
+			elEvent: req.body.elEvent,
 		})
 
 		req.user.save(function(err,doc){
@@ -109,6 +110,7 @@ var indexController = {
 			waEnd: req.body.waEnd,
 			waUsage: req.body.waUsage,
 			waCost: req.body.waCost,
+			waEvent: req.body.waEvent,
 		})
 
 		req.user.save(function(err,doc){

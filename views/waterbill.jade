@@ -30,6 +30,7 @@ block content
 								th Billing Period End
 								th Usage (Gallons)
 								th Total Cost
+								th.clearfix.hidden-xs Event/Project:
 								th
 									button.btn.btn-info.btn-xs(id="waterAddBill" data-toggle="modal" data-target="#waterModal") Add Bill +
 									#waterModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
@@ -55,6 +56,9 @@ block content
 																label Total Cost:
 																input.form-control.waCost-entry.input-sm.bill-form(name="waCost" type="text" required)
 															.form-group
+																label Event/Project:
+																input.form-control.elEvent-entry.input-sm.bill-form(name="waEvent" type="text" placeholder="ex. gardening, houseguests")
+															.form-group
 																button.btn.btn-default.close-me(type='button', data-dismiss='modal') Close
 																input.btn.btn-primary.save-waterBill.save-me(type='submit' value="Save Changes")
 						//- HB Placeholder
@@ -65,6 +69,7 @@ block content
 									td=bill.waEnd
 									td=bill.waUsage
 									td=bill.waCost
+									td.clearfix.hidden-xs=bill.waEvent
 									td
 										//- a.btn.btn-warning.btn-xs(id="waDelete" href="/users/#{userId}/waterbill/remove/#{bill._id}") Delete
 										a.btn.btn-xs(id="waDelete" href="/waterbill/remove/#{bill._id}") ✘
