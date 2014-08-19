@@ -12,20 +12,20 @@ block content
     h2 Existing Users
     form.form-horizontal(action="/auth/login", method="post")
       .form-group
-        input.form-control.input-sm(type="text", name="username", placeholder="Username")
+        input.form-control.input-sm.log-me(type="text", name="username", placeholder="Username")
       .form-group
-        input.form-control.input-sm(type="password", name="password", placeholder="Password")
+        input.form-control.input-sm.log-me(type="password", name="password", placeholder="Password")
       .form-group.login-button
-        input.form-control.btn.btn-primary(type="submit", value="Sign In")
+        input.form-control.btn.btn-primary.log-me(type="submit", value="Sign In")
 
     //- Form for allowing new users to register.
     h2 Register
     form.form-horizontal(action="/auth/signup", method="post")
       .form-group
-        input.form-control.input-sm(type="text", name="username", placeholder="Username")
+        input.form-control.input-sm.log-me(type="text", name="username", placeholder="Username")
       .form-group
-        input.form-control.input-sm(type="email", name="email", placeholder="Email")
+        input.form-control.input-sm.log-me(type="email", name="email", placeholder="Email")
       .form-group
-        input.form-control.input-sm(type="password", name="password", placeholder="Password")
+        input.form-control.input-sm.log-me(type="password", name="password", placeholder="Password")
       .form-group.login-button
-        input.form-control.btn.btn-primary(type="submit")
+        input.form-control.btn.btn-primary.log-me(type="submit")
