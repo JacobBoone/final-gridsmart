@@ -61,7 +61,7 @@ block content
 						tbody#water-table
 							for bill in user.houses[0].bills.water
 								tr.water-row
-									td=bill.waStart
+									td.clearfix.hidden-xs=bill.waStart
 									td=bill.waEnd
 									td=bill.waUsage
 									td=bill.waCost
