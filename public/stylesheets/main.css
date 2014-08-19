@@ -13,7 +13,7 @@ body{
 h1{
 	font-family: fantasy;
 	font-weight: bold;
-	margin-left: 100px;
+	margin-left: 7%;
 	/*color:#00CC00;*/
 	font-size: 50px;
 }
@@ -21,7 +21,7 @@ h2{
 	font-family: fantasy;
 }
 .welcome{
-	margin-left: 100px;
+	margin-left: 8%;
 	display: inline-block;
 }
 .logout{
@@ -46,7 +46,7 @@ h2{
 	background-color: blue;
 }*/
 .main-panel{
-	margin-left: 100px;
+	margin-left: 7%;
 	width: 70%;
 	background-color: white;
 	padding: 10px;
