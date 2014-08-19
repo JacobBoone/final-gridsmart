@@ -28,7 +28,7 @@ block content
 							thead
 								tr
 									
-									th Billing Period Start
+									th.clearfix.hidden-xs Billing Period Start
 									th Billing Period End
 									th Usage (kWh)
 									th Total Cost
@@ -64,7 +64,7 @@ block content
 								for bill in user.houses[0].bills.electric
 									tr.elec-row
 
-										td=bill.elStart
+										td.clearfix.hidden-xs=bill.elStart
 										td=bill.elEnd
 										td=bill.elUsage
 										td=bill.elCost

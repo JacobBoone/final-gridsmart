@@ -53,6 +53,7 @@ h2{
 	border-radius: 10px;
     box-shadow: 12px 12px 10px #888888;
     border-style: outset;
+    min-width: 360px;
 
 }
 
