@@ -33,6 +33,7 @@ h2{
 .login{
 	width: 50%;
 	margin-left: 40%;
+	min-width: 500px;
 
 }
 
