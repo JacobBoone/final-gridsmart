@@ -12,7 +12,7 @@ var indexController = require('./controllers/index.js');
 
 var mongoose = require('mongoose')
 // mongoose.connect('mongodb://localhost/gridsmart')
-mongoose.connect('mongodb://heroku:8oD_h8mNIGq_odemNNFBmQ1wWgnq8mYgx2hjXodC6gRsZhdpotGJYzfENLMQ56qjm85dl2sgRQpXmhu-lCaMPw@kahana.mongohq.com:10031/app28638282' || 'mongodb://localhost/gridsmart')
+mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/gridsmart')
 
 
 var app = express();
