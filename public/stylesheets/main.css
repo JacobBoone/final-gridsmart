@@ -107,5 +107,8 @@ h2{
 	padding-left: 10px;
 	color: lightgrey;
 }
-
+.location-entry, .city-entry, .state-entry, .area-entry{
+	width: 20%;
+	min-width: 259px;
+}
 
